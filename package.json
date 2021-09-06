@@ -1,0 +1,36 @@
+{
+  "name": "my-dummy-store",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "prettier": "prettier --write \"**/*.{ts,tsx,css}\"",
+    "server": "yarn json-server server/MOCK_DATA.json --port 3333"
+  },
+  "dependencies": {
+    "next": "11.1.2",
+    "next-images": "^1.8.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "devDependencies": {
+    "@types/react": "17.0.20",
+    "@typescript-eslint/eslint-plugin": "^4.30.0",
+    "@typescript-eslint/parser": "^4.30.0",
+    "eslint": "^7.32.0",
+    "eslint-config-next": "11.1.2",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-react": "^7.25.1",
+    "json-server": "^0.16.3",
+    "prettier": "^2.3.2",
+    "typescript": "4.4.2"
+  }
+}

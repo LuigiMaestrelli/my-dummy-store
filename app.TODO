@@ -2,7 +2,7 @@
 [x] Default page layout
 [] Authentication
 [] Search option at app bar
-[x] Footer
+[] Footer
 [] Product detail
 [] Infinite scroll
 [] Internationalization
@@ -10,3 +10,5 @@
 [] husky
 [] lint-staged
 [] git msg linter
+[] Cart
+[] Some admin and user area

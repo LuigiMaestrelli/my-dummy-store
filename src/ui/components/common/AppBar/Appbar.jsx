@@ -7,7 +7,7 @@ import styles from './AppBar.module.css';
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
-export function AppBar(props) {
+export function AppBar() {
   return (
     <>
       <MuiAppBar position="fixed">

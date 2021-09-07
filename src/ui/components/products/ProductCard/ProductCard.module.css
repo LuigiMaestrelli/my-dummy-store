@@ -1,0 +1,29 @@
+.card {
+  margin-bottom: 1rem;
+  height: 370px;
+  max-height: 370px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.cardContent {
+  display: flex;
+  flex: 1;
+}
+
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.productTitle {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.productRatings {
+  align-items: center;
+  display: flex;
+}

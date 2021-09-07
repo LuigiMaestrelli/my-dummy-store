@@ -1,7 +1,12 @@
-[] Página de erro 404 customizada
-[] Página de layout padrão
-[] Autenticação
-[] Pesquisa na barra
-[] Footer
-[] Detalhes do item
+[] Custom 404 page
+[x] Default page layout
+[] Authentication
+[] Search option at app bar
+[x] Footer
+[] Product detail
 [] Infinite scroll
+[] Internationalization
+[] SWR
+[] husky
+[] lint-staged
+[] git msg linter

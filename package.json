@@ -11,6 +11,14 @@
     "server": "yarn json-server server/MOCK_DATA.json --port 3333"
   },
   "dependencies": {
+    "@emotion/cache": "^11.4.0",
+    "@emotion/react": "^11.4.1",
+    "@emotion/server": "^11.4.0",
+    "@emotion/styled": "^11.3.0",
+    "@mui/icons-material": "^5.0.0-rc.0",
+    "@mui/material": "^5.0.0-rc.0",
+    "axios": "^0.21.4",
+    "clsx": "^1.1.1",
     "next": "11.1.2",
     "next-images": "^1.8.1",
     "react": "17.0.2",
@@ -18,8 +26,8 @@
   },
   "devDependencies": {
     "@types/react": "17.0.20",
-    "@typescript-eslint/eslint-plugin": "^4.30.0",
-    "@typescript-eslint/parser": "^4.30.0",
+    "@typescript-eslint/eslint-plugin": "^4.31.0",
+    "@typescript-eslint/parser": "^4.31.0",
     "eslint": "^7.32.0",
     "eslint-config-next": "11.1.2",
     "eslint-config-prettier": "^8.3.0",

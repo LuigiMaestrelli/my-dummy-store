@@ -15,8 +15,10 @@
     "jsx": "preserve",
     "noImplicitAny": true,
     "baseUrl": ".",
+    "noImplicitThis": true,
+    "strictNullChecks": true,
     "paths": {
-      "@/styles/*": ["./src/styles/*"]
+      "@/*": ["./src/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

@@ -1,3 +1,5 @@
+Simple project so I can learn and play around with Next.JS and try clean architecture on front-end
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started

@@ -5,13 +5,13 @@ import type {
 } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import axios from 'axios';
 import { ParsedUrlQuery } from 'querystring';
 import { Container } from '@mui/material';
 
 import { Layout } from '@/ui/components/common/Layout';
 
 import { Product } from '@/domain/product';
+import { createApi } from '@/services/apiAdapter';
 
 interface QueryParams extends ParsedUrlQuery {
   productId: string;
@@ -42,7 +42,8 @@ export default function ProductDetail({ product }: Props) {
 }
 
 export async function getStaticPaths(): Promise<GetStaticPathsResult> {
-  const { data } = await axios.get<Product[]>('http://localhost:3333/products');
+  const api = createApi();
+  const { data } = await api.get<Product[]>('products');
 
   const routes = data.map((p: Product) => {
     const params = `/product/${p.id}`;
@@ -57,9 +58,8 @@ export async function getStaticProps(
 ): Promise<GetStaticPropsResult<Props>> {
   const { productId } = context.params as QueryParams;
 
-  const { data } = await axios.get<Product>(
-    `http://localhost:3333/products/${productId}`
-  );
+  const api = createApi();
+  const { data } = await api.get<Product>(`products/${productId}`);
 
   return {
     props: {

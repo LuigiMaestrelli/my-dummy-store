@@ -1,12 +1,12 @@
 import type { GetStaticPropsResult } from 'next';
 import Head from 'next/head';
-import axios from 'axios';
 import { Container, Grid } from '@mui/material';
 
 import { ProductCard } from '@/ui/components/products/ProductCard';
 import { Layout } from '@/ui/components/common/Layout';
 
 import { Product } from '@/domain/product';
+import { createApi } from '@/services/apiAdapter';
 
 type Props = {
   products: Product[];
@@ -33,9 +33,8 @@ export default function Home({ products, ...otherProps }: Props) {
 }
 
 export async function getStaticProps(): Promise<GetStaticPropsResult<Props>> {
-  const response = await axios.get<Product[]>(
-    'http://localhost:3333/products?_page=1&_limit=20'
-  );
+  const api = createApi();
+  const response = await api.get<Product[]>('products?_page=1&_limit=20');
 
   return {
     props: {

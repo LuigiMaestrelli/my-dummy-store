@@ -5,7 +5,7 @@ import { AppBar as MuiAppBar, Toolbar, Typography } from '@mui/material';
 
 import styles from './AppBar.module.css';
 
-const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
+const Offset = styled('div')(({ theme }: any) => theme.mixins.toolbar);
 
 export function AppBar() {
   return (

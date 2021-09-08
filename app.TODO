@@ -9,7 +9,7 @@
 [] SWR
 [x] husky
 [x] lint-staged
-[] git msg linter
+[x] git msg linter
 [] Cart
 [] Some admin and user area
 [] Tests 

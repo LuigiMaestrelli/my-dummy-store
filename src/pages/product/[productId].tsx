@@ -25,7 +25,7 @@ export default function ProductDetail({ product }: Props) {
   const { isFallback } = useRouter();
 
   if (isFallback) {
-    return <span>Carregando</span>;
+    return <span>Loading...</span>;
   }
 
   return (
@@ -65,7 +65,7 @@ export async function getStaticProps(
     props: {
       product: data
     },
-    revalidate: 30 // 30 minutos
+    revalidate: 30 // 30 seconds
   };
 }
 

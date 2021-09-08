@@ -40,7 +40,7 @@ export async function getStaticProps(): Promise<GetStaticPropsResult<Props>> {
     props: {
       products: response.data
     },
-    revalidate: 10 // recriar a cada 10 segundos
+    revalidate: 30 // recreate every 30 seconds
   };
 }
 

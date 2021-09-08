@@ -7,8 +7,8 @@
 [] Infinite scroll
 [] Internationalization
 [] SWR
-[] husky
-[] lint-staged
+[x] husky
+[x] lint-staged
 [] git msg linter
 [] Cart
 [] Some admin and user area

@@ -10,7 +10,7 @@ import {
 import AccessAlarmIcon from '@mui/icons-material/Star';
 
 import { Product } from '@/domain/product';
-import { useDecimalFormater } from '@/services/decimalFormaterAdapter';
+import { useDecimalFormatter } from '@/services/decimalFormatterAdapter';
 
 import styles from './ProductCard.module.css';
 
@@ -19,7 +19,7 @@ type Props = {
 };
 
 export function ProductCard({ product }: Props) {
-  const { format, formatCurrent } = useDecimalFormater();
+  const { format, formatCurrent } = useDecimalFormatter();
 
   return (
     <Link href={`/product/${product.id}`} passHref>

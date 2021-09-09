@@ -14,7 +14,7 @@ import { Layout } from '@/ui/components/common/Layout';
 import { Product } from '@/domain/product';
 import { createApi } from '@/services/apiAdapter';
 import { Box } from '@mui/system';
-import { useDecimalFormater } from '@/services/decimalFormaterAdapter';
+import { useDecimalFormatter } from '@/services/decimalFormatterAdapter';
 
 interface QueryParams extends ParsedUrlQuery {
   productId: string;
@@ -26,7 +26,7 @@ type Props = {
 
 export default function ProductDetail({ product }: Props) {
   const { isFallback } = useRouter();
-  const { formatCurrent } = useDecimalFormater();
+  const { formatCurrent } = useDecimalFormatter();
 
   const handleBuyNowClick = () => {
     alert('Not done yet');

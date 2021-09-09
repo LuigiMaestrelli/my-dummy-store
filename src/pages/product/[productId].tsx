@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import type {
   GetStaticPathsResult,
   GetStaticPropsResult,
@@ -15,6 +16,7 @@ import { Product } from '@/domain/product';
 import { createApi } from '@/services/apiAdapter';
 import { Box } from '@mui/system';
 import { useDecimalFormatter } from '@/services/decimalFormatterAdapter';
+import { AlertContext } from '@/ui/contexts/AlertContext';
 
 interface QueryParams extends ParsedUrlQuery {
   productId: string;
@@ -27,9 +29,10 @@ type Props = {
 export default function ProductDetail({ product }: Props) {
   const { isFallback } = useRouter();
   const { formatCurrent } = useDecimalFormatter();
+  const { showAlertDialog } = useContext(AlertContext);
 
   const handleBuyNowClick = () => {
-    alert('Not done yet');
+    showAlertDialog('Hello!', 'Not done yet');
   };
 
   if (isFallback) {

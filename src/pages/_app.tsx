@@ -1,6 +1,8 @@
 import { FC, useEffect } from 'react';
 import type { AppProps } from 'next/app';
 import { CacheProvider, EmotionCache } from '@emotion/react';
+
+import { AlertProvider } from '@/ui/contexts/AlertContext';
 import ThemeProvider from '@/ui/theme/ThemeProvider';
 import createEmotionCache from '@/ui/theme/createEmotionCache';
 
@@ -27,9 +29,11 @@ function MyApp(props: MyAppProps) {
   return (
     <CacheProvider value={emotionCache}>
       <ThemeProvider>
-        <Layout {...pageProps}>
-          <Component {...pageProps} />
-        </Layout>
+        <AlertProvider>
+          <Layout {...pageProps}>
+            <Component {...pageProps} />
+          </Layout>
+        </AlertProvider>
       </ThemeProvider>
     </CacheProvider>
   );

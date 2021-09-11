@@ -1,3 +1,7 @@
 .appBar {
   margin-bottom: 1rem;
 }
+
+.title {
+  cursor: pointer;
+}

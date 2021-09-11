@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { AppBar } from '@/ui/components/common/AppBar';
 import { Footer } from '@/ui/components/common/Footer';
 

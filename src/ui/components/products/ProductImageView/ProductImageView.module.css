@@ -1,0 +1,18 @@
+.root {
+  display: flex;
+  flex-direction: row;
+}
+
+.containerImages {
+  display: flex;
+  flex-direction: column;
+}
+
+.imagePreview {
+  cursor: pointer;
+}
+
+.imageBox {
+  padding: 8px;
+  display: flex;
+}

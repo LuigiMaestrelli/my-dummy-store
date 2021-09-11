@@ -5,7 +5,12 @@ const nextConfig = {
   esModule: true,
   reactStrictMode: true,
   images: {
-    domains: ['fakestoreapi.com', 'robohash.org', 'i.pravatar.cc']
+    domains: [
+      'fakestoreapi.com',
+      'unsplash.com',
+      'i.pravatar.cc',
+      'images.unsplash.com'
+    ]
   }
 };
 

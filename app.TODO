@@ -3,7 +3,7 @@
 [] Authentication
 [] Search option at app bar
 [] Footer
-[] Product detail
+[x] Product detail
 [] Add product to wish list
 [] Infinite scroll
 [] Internationalization

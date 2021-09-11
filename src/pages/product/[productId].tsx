@@ -82,14 +82,14 @@ export default function ProductDetail({ product }: Props) {
           }}
         >
           <Grid container>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={5}>
               <ProductImageView
                 primaryImageUrl={product.image}
                 images={product.otherImages}
                 productTitle={product.title}
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={7}>
               <Box
                 sx={{
                   display: 'flex',

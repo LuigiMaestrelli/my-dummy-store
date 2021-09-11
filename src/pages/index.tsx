@@ -8,11 +8,11 @@ import { Layout } from '@/ui/components/common/Layout';
 import { Product } from '@/domain/product';
 import { createApi } from '@/services/apiAdapter';
 
-type Props = {
+type HomeProps = {
   products: Product[];
 };
 
-export default function Home({ products, ...otherProps }: Props) {
+export default function Home({ products }: HomeProps) {
   return (
     <>
       <Head>
@@ -32,7 +32,9 @@ export default function Home({ products, ...otherProps }: Props) {
   );
 }
 
-export async function getStaticProps(): Promise<GetStaticPropsResult<Props>> {
+export async function getStaticProps(): Promise<
+  GetStaticPropsResult<HomeProps>
+> {
   const api = createApi();
   const response = await api.get<Product[]>('products?_page=1&_limit=20');
 

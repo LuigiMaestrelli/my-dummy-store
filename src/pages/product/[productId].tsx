@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from 'react';
+import { useContext } from 'react';
 import type {
   GetStaticPathsResult,
   GetStaticPropsResult,
@@ -16,14 +16,15 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Tooltip from '@mui/material/Tooltip';
 
-import { Layout } from '@/ui/components/common/Layout';
-import { ProductImageView } from '@/ui/components/products/ProductImageView';
-import { SimilarProductCard } from '@/ui/components/products/SimilarProductCard';
-
 import { Product } from '@/domain/product';
 import { createApi } from '@/services/apiAdapter';
 import { useDecimalFormatter } from '@/services/decimalFormatterAdapter';
 import { AlertContext } from '@/ui/contexts/AlertContext';
+import { useFindSimilarProduct } from '@/application/product/findSimilarProduct';
+
+import { Layout } from '@/ui/components/common/Layout';
+import { ProductImageView } from '@/ui/components/products/ProductImageView';
+import { SimilarProductCard } from '@/ui/components/products/SimilarProductCard';
 
 interface QueryParams extends ParsedUrlQuery {
   productId: string;
@@ -33,31 +34,11 @@ type Props = {
   product: Product;
 };
 
-const api = createApi();
-
 export default function ProductDetail({ product }: Props) {
-  const [similarProducts, setSimilarProducts] = useState<Product[]>([]);
   const { isFallback } = useRouter();
   const { formatCurrent, format } = useDecimalFormatter();
   const { showAlertDialog } = useContext(AlertContext);
-
-  useEffect(() => {
-    let disposed = false;
-
-    (async () => {
-      const { data } = await api.get<Product[]>(
-        `products?category=${product.category}&id_ne=${product.id}&_limit=10`
-      );
-
-      if (disposed) return;
-
-      setSimilarProducts(data);
-    })();
-
-    return () => {
-      disposed = true;
-    };
-  }, [product]);
+  const similarProducts = useFindSimilarProduct(product);
 
   const handleBuyNowClick = () => {
     showAlertDialog('Hello!', 'Not done yet');

@@ -7,7 +7,7 @@
 [] Add product to wish list
 [] Infinite scroll
 [] Internationalization
-[] SWR
+[x] SWR
 [x] husky
 [x] lint-staged
 [x] git msg linter

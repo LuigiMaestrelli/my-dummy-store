@@ -27,7 +27,7 @@ export function ProductCard({ product }: Props) {
         <CardMedia
           component="img"
           height="200"
-          image={product.image}
+          image={`${product.image}?w=200`}
           alt={product.title}
         />
         <CardContent className={styles.cardContent}>

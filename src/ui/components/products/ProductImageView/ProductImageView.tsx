@@ -34,7 +34,7 @@ export function ProductImageView({
         {otherImages.map((image: string, index) => (
           <ImageListItem key={index}>
             <Image
-              src={image}
+              src={`${image}?w=100`}
               alt={productTitle}
               width={100}
               height={100}
@@ -46,7 +46,12 @@ export function ProductImageView({
         ))}
       </ImageList>
       <div className={styles.imageBox}>
-        <Image src={currentImage} alt={productTitle} width={400} height={400} />
+        <Image
+          src={`${currentImage}?w=400`}
+          alt={productTitle}
+          width={400}
+          height={400}
+        />
       </div>
     </div>
   );

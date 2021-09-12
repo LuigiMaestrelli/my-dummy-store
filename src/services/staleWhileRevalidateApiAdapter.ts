@@ -2,13 +2,14 @@ import useSWR from 'swr';
 
 type FetcherType<TFetcherResponse> = (url: string) => Promise<TFetcherResponse>;
 
-export function useApiCache<TResponse>(
+export function useStaleWhileRevalidateApi<TResponse>(
   requestUrl: string,
   fetcher: FetcherType<TResponse>
 ) {
-  const { data, error } = useSWR<TResponse>(requestUrl, async url => {
-    return await fetcher(url);
-  });
+  const { data, error } = useSWR<TResponse>(
+    requestUrl,
+    async url => await fetcher(url)
+  );
 
   return { data, error };
 }

@@ -196,7 +196,7 @@ export async function getStaticPaths(): Promise<GetStaticPathsResult> {
   const { data } = await api.get<Product[]>('products');
 
   const routes = data.map((p: Product) => {
-    const params = `/product/${p.id}`;
+    const params = `/product/${p.slug}`;
     return params;
   });
 
@@ -206,14 +206,18 @@ export async function getStaticPaths(): Promise<GetStaticPathsResult> {
 export async function getStaticProps(
   context: GetStaticPropsContext<QueryParams>
 ): Promise<GetStaticPropsResult<Props>> {
-  const { productId } = context.params as QueryParams;
+  const { slug } = context.params as QueryParams;
 
   const api = createApi();
-  const { data } = await api.get<Product>(`products/${productId}`);
+  const { data } = await api.get<Product[]>(`products?slug=${slug}`);
+
+  if (!data.length) {
+    throw new Error(`Slug not found ${slug}`);
+  }
 
   return {
     props: {
-      product: data
+      product: data[0]
     },
     revalidate: 30 // 30 seconds
   };

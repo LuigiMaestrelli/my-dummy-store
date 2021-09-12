@@ -22,7 +22,7 @@ export function ProductCard({ product }: Props) {
   const { format, formatCurrent } = useDecimalFormatter();
 
   return (
-    <Link href={`/product/${product.id}`} passHref>
+    <Link href={`/product/${product.slug}`} passHref>
       <Card className={styles.card}>
         <CardMedia
           component="img"

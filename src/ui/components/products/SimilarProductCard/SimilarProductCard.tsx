@@ -13,7 +13,7 @@ type SimilarProductCardType = {
 
 export function SimilarProductCard({ product }: SimilarProductCardType) {
   return (
-    <Link href={`/product/${product.id}`} passHref>
+    <Link href={`/product/${product.slug}`} passHref>
       <Card
         sx={{
           padding: 1,

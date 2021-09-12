@@ -18,7 +18,8 @@ async function getRequest<TResponse>(
   return {
     data: response.data,
     status: response.status,
-    statusText: response.statusText
+    statusText: response.statusText,
+    headers: response.headers
   };
 }
 
@@ -31,7 +32,8 @@ async function deleteRequest<TResponse>(
   return {
     data: response.data,
     status: response.status,
-    statusText: response.statusText
+    statusText: response.statusText,
+    headers: response.headers
   };
 }
 
@@ -45,7 +47,8 @@ async function postRequest<TResponse>(
   return {
     data: response.data,
     status: response.status,
-    statusText: response.statusText
+    statusText: response.statusText,
+    headers: response.headers
   };
 }
 
@@ -59,7 +62,8 @@ async function putRequest<TResponse>(
   return {
     data: response.data,
     status: response.status,
-    statusText: response.statusText
+    statusText: response.statusText,
+    headers: response.headers
   };
 }
 
@@ -73,7 +77,8 @@ async function patchRequest<TResponse>(
   return {
     data: response.data,
     status: response.status,
-    statusText: response.statusText
+    statusText: response.statusText,
+    headers: response.headers
   };
 }
 

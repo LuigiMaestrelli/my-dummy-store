@@ -24,6 +24,7 @@ export type ApiResponse<TResponse> = {
   data: TResponse;
   status: number;
   statusText: string;
+  headers: any;
 };
 
 export type ApiRequestConfig = {

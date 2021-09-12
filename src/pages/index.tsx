@@ -1,6 +1,7 @@
 import type { GetStaticPropsResult } from 'next';
 import Head from 'next/head';
-import { Container, Grid } from '@mui/material';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
 
 import { ProductCard } from '@/ui/components/products/ProductCard';
 import { Layout } from '@/ui/components/common/Layout';
@@ -8,11 +9,11 @@ import { Layout } from '@/ui/components/common/Layout';
 import { Product } from '@/domain/product';
 import { createApi } from '@/services/apiAdapter';
 
-type HomeProps = {
+type HomePageProps = {
   products: Product[];
 };
 
-export default function Home({ products }: HomeProps) {
+export default function HomePage({ products }: HomePageProps) {
   return (
     <>
       <Head>
@@ -33,7 +34,7 @@ export default function Home({ products }: HomeProps) {
 }
 
 export async function getStaticProps(): Promise<
-  GetStaticPropsResult<HomeProps>
+  GetStaticPropsResult<HomePageProps>
 > {
   const api = createApi();
   const response = await api.get<Product[]>('products?_page=1&_limit=20');
@@ -46,4 +47,4 @@ export async function getStaticProps(): Promise<
   };
 }
 
-Home.Layout = Layout;
+HomePage.Layout = Layout;

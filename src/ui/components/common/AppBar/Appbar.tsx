@@ -1,20 +1,22 @@
-import React from 'react';
 import Link from 'next/link';
-import styled from '@mui/system/styled';
-import { ThemeOptions } from '@mui/material/styles/createTheme';
+import { useRouter } from 'next/router';
 import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+
+import { Offset, SearchBar } from './components';
 
 import styles from './AppBar.module.css';
 
-type OffsetType = {
-  theme?: ThemeOptions;
-};
-
-const Offset = styled('div')(({ theme }: OffsetType) => theme?.mixins?.toolbar);
-
 export function AppBar() {
+  const router = useRouter();
+
+  const handleSearch = (value: string) => {
+    value = encodeURI(value);
+    router.push(`/search/${value}`);
+  };
+
   return (
     <>
       <MuiAppBar position="fixed">
@@ -24,6 +26,8 @@ export function AppBar() {
               My Dummy Store
             </Typography>
           </Link>
+          <SearchBar onSearch={handleSearch} />
+          <Box sx={{ flexGrow: 1 }} />
         </Toolbar>
       </MuiAppBar>
       <Offset className={styles.appBar} />

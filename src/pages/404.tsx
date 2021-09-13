@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
-export default function NotFound() {
+export default function NotFoundPage() {
   return (
     <>
       <Head>

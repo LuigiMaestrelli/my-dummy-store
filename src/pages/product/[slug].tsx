@@ -15,6 +15,7 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Tooltip from '@mui/material/Tooltip';
+import Skeleton from '@mui/material/Skeleton';
 
 import { Product } from '@/domain/product';
 import { createApi } from '@/services/apiAdapter';
@@ -30,11 +31,11 @@ interface QueryParams extends ParsedUrlQuery {
   productId: string;
 }
 
-type Props = {
+type ProductDetailProps = {
   product: Product;
 };
 
-export default function ProductDetail({ product }: Props) {
+export default function ProductDetail({ product }: ProductDetailProps) {
   const { isFallback } = useRouter();
   const { formatCurrent, format } = useDecimalFormatter();
   const { showAlertDialog } = useContext(AlertContext);
@@ -45,7 +46,88 @@ export default function ProductDetail({ product }: Props) {
   };
 
   if (isFallback) {
-    return <span>Loading...</span>;
+    return (
+      <>
+        <Head>
+          <title>Loading...</title>
+        </Head>
+
+        <Container maxWidth="xl">
+          <Card
+            sx={{
+              padding: 1,
+              display: 'flex',
+              flexDirection: 'row'
+            }}
+          >
+            <Grid container>
+              <Grid item xs={12} sm={5}>
+                <Skeleton variant="rectangular" width="100%" height="100%" />
+              </Grid>
+              <Grid item xs={12} sm={7}>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    flex: 1,
+                    marginLeft: 2
+                  }}
+                >
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      flex: 1
+                    }}
+                  >
+                    <Typography
+                      variant="h1"
+                      sx={{ fontSize: 22, fontWeight: 'bold', marginBottom: 2 }}
+                    >
+                      <Skeleton variant="text" />
+                    </Typography>
+
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        justifyContent: 'space-between'
+                      }}
+                    >
+                      <Typography variant="body2">
+                        <Skeleton variant="text" />
+                      </Typography>
+
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          flexDirection: 'column'
+                        }}
+                      >
+                        <Typography variant="body2">
+                          <Skeleton variant="text" />
+                        </Typography>
+                      </Box>
+                    </Box>
+
+                    <Typography variant="body1" sx={{ marginTop: 2 }}>
+                      <Skeleton variant="text" />
+                    </Typography>
+
+                    <Typography
+                      variant="h2"
+                      sx={{ fontSize: 30, alignSelf: 'flex-end', marginTop: 2 }}
+                    >
+                      <Skeleton variant="text" />
+                    </Typography>
+                  </Box>
+                </Box>
+              </Grid>
+            </Grid>
+          </Card>
+        </Container>
+      </>
+    );
   }
 
   return (
@@ -205,7 +287,7 @@ export async function getStaticPaths(): Promise<GetStaticPathsResult> {
 
 export async function getStaticProps(
   context: GetStaticPropsContext<QueryParams>
-): Promise<GetStaticPropsResult<Props>> {
+): Promise<GetStaticPropsResult<ProductDetailProps>> {
   const { slug } = context.params as QueryParams;
 
   const api = createApi();
@@ -219,7 +301,7 @@ export async function getStaticProps(
     props: {
       product: data[0]
     },
-    revalidate: 30 // 30 seconds
+    revalidate: 30
   };
 }
 

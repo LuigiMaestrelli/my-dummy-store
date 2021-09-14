@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 import { ParsedUrlQuery } from 'querystring';
 
 import { Product } from '@/domain/models/product';
+import { NotFoundError } from '@/domain/errors';
 import { getProductApiClient } from '@/main/factories/infrastructure/product/productApiClient';
 
 import ProductDetailView, {
@@ -41,8 +42,7 @@ export async function getStaticProps(
   const product = await productApi.findBySlug(slug);
 
   if (!product) {
-    // TODO not found error
-    throw new Error(`Slug not found ${slug}`);
+    throw new NotFoundError(`Slug not found ${slug}`);
   }
 
   return {

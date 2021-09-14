@@ -26,3 +26,7 @@ Implements all the protocols needed by the application layer. It is responsible 
 ### Presentation
 
 Everything related to the view. TSX, Components, CSS. Everything related to the user interface goes here.
+
+### Main
+
+Where everything comes together. Factories and classes to use on the presentation layer, making the layer free from external dependencies and easy to maintain.

@@ -10,9 +10,9 @@ import Grid from '@mui/material/Grid';
 import Tooltip from '@mui/material/Tooltip';
 
 import { Product } from '@/domain/models/product';
-import { useDecimalFormatter } from '@/infrastructure/intlNumberDecimalFormatter';
 import { AlertContext } from '@/presentation/contexts/AlertContext';
 import { useFindSimilarProduct } from '@/application/usecases/product/findSimilarProduct';
+import { useDecimalFormatter } from '@/main/factories/infrastructure/decimalFormater';
 
 import { ProductImageView } from '@/presentation/components/products/ProductImageView';
 import { SimilarProductCard } from '@/presentation/components/products/SimilarProductCard';

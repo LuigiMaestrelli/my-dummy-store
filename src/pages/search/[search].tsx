@@ -1,8 +1,7 @@
 import type { GetServerSidePropsResult, GetServerSidePropsContext } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 
-import { Product } from '@/domain/models/product';
-import { createApi } from '@/infrastructure/axiosApiClient';
+import { getProductApiClient } from '@/main/factories/infrastructure/product/productApiClient';
 
 import SearchView, { SearchViewProps } from '@/presentation/view/main/Search';
 import { Layout } from '@/presentation/components/common/Layout';
@@ -22,21 +21,23 @@ export async function getServerSideProps(
   const { page = '1' } = context.query as UrlQueryParams;
   const limit = 20;
 
-  const api = createApi();
-  const response = await api.get<Product[]>(
-    `products?q=${search}&_page=${page}&_limit=${limit}`
-  );
-
-  const totalCount = response.headers['x-total-count'];
   const currentPage = parseInt(page);
-  const totalPages = Math.ceil(totalCount / limit);
+
+  const productApi = getProductApiClient();
+  const [products, total] = await productApi.find({
+    query: search,
+    page: currentPage,
+    limit
+  });
+
+  const totalPages = Math.ceil(total / limit);
 
   return {
     props: {
       search,
       totalPages,
       page: currentPage,
-      products: response.data
+      products
     }
   };
 }

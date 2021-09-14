@@ -1,26 +1,21 @@
-import { DecimalFormatter } from '@/application/protocols/decimalFormatter';
+import { IDecimalFormatter } from '@/application/protocols/decimalFormatter';
 
-export class IntlNumberDecimalFormatter implements DecimalFormatter {
-  currencyFormatter: Intl.NumberFormat;
-  defaultFormatter: Intl.NumberFormat;
+const currencyFormatter = new Intl.NumberFormat('pt-BR', {
+  style: 'currency',
+  currency: 'BRL'
+});
 
-  constructor() {
-    this.currencyFormatter = new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL'
-    });
+const defaultFormatter = new Intl.NumberFormat('pt-BR', {
+  maximumFractionDigits: 2,
+  minimumFractionDigits: 2
+});
 
-    this.defaultFormatter = new Intl.NumberFormat('pt-BR', {
-      maximumFractionDigits: 2,
-      minimumFractionDigits: 2
-    });
+export class IntlNumberDecimalFormatter implements IDecimalFormatter {
+  formatCurrent(value: number): string {
+    return currencyFormatter.format(value);
   }
 
-  formatCurrent = (value: number): string => {
-    return this.currencyFormatter.format(value);
-  };
-
-  format = (value: number): string => {
-    return this.defaultFormatter.format(value);
-  };
+  format(value: number): string {
+    return defaultFormatter.format(value);
+  }
 }

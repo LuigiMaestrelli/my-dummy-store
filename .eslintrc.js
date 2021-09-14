@@ -7,8 +7,8 @@ module.exports = {
   },
   extends: [
     'plugin:react/recommended',
-    'standard',
     'next/core-web-vitals',
+    'standard',
     'prettier'
   ],
   parser: '@typescript-eslint/parser',
@@ -19,21 +19,22 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module'
   },
-  plugins: [
-    'react',
-    '@typescript-eslint',
-    'prettier'
-  ],
+  plugins: ['react', '@typescript-eslint', 'prettier'],
   globals: {
     JSX: 'readonly'
   },
   rules: {
-    "prettier/prettier": ["error", { semi: true }, {
-      "usePrettierrc": true
-    }],
+    'prettier/prettier': [
+      'error',
+      { semi: true },
+      {
+        usePrettierrc: true
+      }
+    ],
     'space-before-function-paren': 'off',
     'react/prop-types': 'off',
     'react/display-name': 'off',
-    'no-use-before-define': 'off'
+    'no-use-before-define': 'off',
+    'no-useless-constructor': 'off'
   }
-}
+};

@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 import { ParsedUrlQuery } from 'querystring';
 
 import { Product } from '@/domain/models/product';
-import { createApi } from '@/infrastructure/axiosApiClient';
+import { getProductApiClient } from '@/main/factories/infrastructure/product/productApiClient';
 
 import ProductDetailView, {
   ProductDetailViewProps
@@ -17,13 +17,14 @@ import { Layout } from '@/presentation/components/common/Layout';
 
 interface QueryParams extends ParsedUrlQuery {
   productId: string;
+  slug: string;
 }
 
 export async function getStaticPaths(): Promise<GetStaticPathsResult> {
-  const api = createApi();
-  const { data } = await api.get<Product[]>('products');
+  const productApi = getProductApiClient();
+  const [products] = await productApi.find();
 
-  const routes = data.map((p: Product) => {
+  const routes = products.map((p: Product) => {
     const params = `/product/${p.slug}`;
     return params;
   });
@@ -36,16 +37,17 @@ export async function getStaticProps(
 ): Promise<GetStaticPropsResult<ProductDetailViewProps>> {
   const { slug } = context.params as QueryParams;
 
-  const api = createApi();
-  const { data } = await api.get<Product[]>(`products?slug=${slug}`);
+  const productApi = getProductApiClient();
+  const product = await productApi.findBySlug(slug);
 
-  if (!data.length) {
+  if (!product) {
+    // TODO not found error
     throw new Error(`Slug not found ${slug}`);
   }
 
   return {
     props: {
-      product: data[0]
+      product
     },
     revalidate: 30
   };

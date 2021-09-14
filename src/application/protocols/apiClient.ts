@@ -24,6 +24,7 @@ export type ApiResponse<TResponse> = {
   data: TResponse;
   status: number;
   statusText: string;
+  total: number;
   headers: any;
 };
 
@@ -41,7 +42,7 @@ export type ApiRequestConfig = {
   onDownloadProgress?: (progressEvent: any) => void;
 };
 
-export interface ApiClient {
+export interface IApiClient {
   get<TResponse>(
     url: string,
     config?: ApiRequestConfig

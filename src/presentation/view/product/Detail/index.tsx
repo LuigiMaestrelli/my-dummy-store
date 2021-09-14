@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import Head from 'next/head';
 import Container from '@mui/material/Container';
 import Card from '@mui/material/Card';
@@ -11,7 +11,7 @@ import Tooltip from '@mui/material/Tooltip';
 
 import { Product } from '@/domain/models/product';
 import { AlertContext } from '@/presentation/contexts/AlertContext';
-import { useFindSimilarProduct } from '@/application/usecases/product/findSimilarProduct';
+import { useProductUseCase } from '@/main/factories/usecases/product/productUseCase';
 import { useDecimalFormatter } from '@/main/factories/infrastructure/decimalFormater';
 
 import { ProductImageView } from '@/presentation/components/products/ProductImageView';
@@ -22,10 +22,21 @@ export type ProductDetailViewProps = {
 };
 
 export default function ProductDetailView({ product }: ProductDetailViewProps) {
+  const [similarProducts, setSimilarProducts] = useState<Product[]>([]);
+  const { findSimilar } = useProductUseCase();
   const { formatCurrent, format } = useDecimalFormatter();
   const { showAlertDialog } = useContext(AlertContext);
-  const { useFindSimilar } = useFindSimilarProduct();
-  const similarProducts = useFindSimilar(product);
+
+  useEffect(() => {
+    if (!product) {
+      return;
+    }
+
+    findSimilar(product).then(products => setSimilarProducts(products));
+  }, [product, findSimilar]);
+
+  // const { useFindSimilar } = useFindSimilarProduct();
+  // const similarProducts = useFindSimilar(product);
 
   const handleBuyNowClick = () => {
     showAlertDialog('Hello!', 'Not done yet');

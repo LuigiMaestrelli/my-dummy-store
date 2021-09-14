@@ -6,6 +6,11 @@ Simple project so I can learn and play around with Next.JS and try clean archite
 
 How I'm thinking about folder structures for a better and more stable architecture.
 
+### Pages
+
+Since I'm using NextJS, I have only a couple options on where can I put the pages folder. So, for now, I'm leaving where...
+I'm trying to separate as much as possible the Views and Components from where and putting all on the presentation layer. Leaving the pages only for de SSR actions.
+
 ### Domain
 
 The domain layer is the most high-level policy. Is where I define the entities and use cases. I don't have any implementations where, only interfaces and types. All the implementations will be done in the application layer.

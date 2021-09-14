@@ -2,7 +2,7 @@ import React, { createContext, useState } from 'react';
 
 import { AlertDialog } from '@/presentation/components/common/Dialog';
 
-type AlertContextType = {
+export type AlertContextType = {
   showAlertDialog: (title: string, content: string) => void;
 };
 

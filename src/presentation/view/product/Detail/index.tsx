@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Container from '@mui/material/Container';
 import Card from '@mui/material/Card';
@@ -10,7 +10,7 @@ import Grid from '@mui/material/Grid';
 import Tooltip from '@mui/material/Tooltip';
 
 import { Product } from '@/domain/models/product';
-import { AlertContext } from '@/presentation/contexts/AlertContext';
+import { useAlertContext } from '@/main/contexts/alertContext';
 import { useProductUseCase } from '@/main/factories/usecases/product/productUseCase';
 import { useDecimalFormatter } from '@/main/factories/infrastructure/decimalFormater';
 
@@ -25,7 +25,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
   const [similarProducts, setSimilarProducts] = useState<Product[]>([]);
   const { findSimilar } = useProductUseCase();
   const { formatCurrent, format } = useDecimalFormatter();
-  const { showAlertDialog } = useContext(AlertContext);
+  const { showAlertDialog } = useAlertContext();
 
   useEffect(() => {
     if (!product) {

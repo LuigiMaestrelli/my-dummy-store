@@ -2,7 +2,7 @@ import {
   ApiService,
   ApiResponse,
   ApiRequestConfig
-} from '@/application/ports/apiService';
+} from '@/infrastructure/ports/apiService';
 import axios from 'axios';
 
 const axiosApi = axios.create({

@@ -1,4 +1,4 @@
-import { DecimalFormatterService } from '@/application/ports/decimalFormatterService';
+import { DecimalFormatterService } from '@/infrastructure/ports/decimalFormatterService';
 
 const currencyFormatter = new Intl.NumberFormat('pt-BR', {
   style: 'currency',

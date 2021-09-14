@@ -2,11 +2,11 @@ import { FC, useEffect } from 'react';
 import type { AppProps } from 'next/app';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 
-import { AlertProvider } from '@/ui/contexts/AlertContext';
-import ThemeProvider from '@/ui/theme/ThemeProvider';
-import createEmotionCache from '@/ui/theme/createEmotionCache';
+import { AlertProvider } from '@/presentation/contexts/AlertContext';
+import ThemeProvider from '@/presentation/theme/ThemeProvider';
+import createEmotionCache from '@/presentation/theme/createEmotionCache';
 
-import '@/ui/styles/globals.css';
+import '@/presentation/styles/globals.css';
 
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;

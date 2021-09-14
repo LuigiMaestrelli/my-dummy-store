@@ -2,10 +2,10 @@ import type { GetServerSidePropsResult, GetServerSidePropsContext } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 
 import { Product } from '@/domain/product';
-import { createApi } from '@/services/apiAdapter';
+import { createApi } from '@/infrastructure/api/apiAdapter';
 
-import SearchView, { SearchViewProps } from '@/ui/view/main/Search';
-import { Layout } from '@/ui/components/common/Layout';
+import SearchView, { SearchViewProps } from '@/presentation/view/main/Search';
+import { Layout } from '@/presentation/components/common/Layout';
 
 interface QueryParams extends ParsedUrlQuery {
   search: string;

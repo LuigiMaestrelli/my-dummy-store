@@ -2,7 +2,7 @@ import React from 'react';
 import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
-import theme from '@/ui/theme';
+import theme from '@/presentation/theme';
 
 export default function ThemeProvider({ children }) {
   return (

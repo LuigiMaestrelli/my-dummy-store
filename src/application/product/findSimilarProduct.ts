@@ -1,6 +1,6 @@
 import { Product } from '@/domain/product';
-import { useStaleWhileRevalidateApi } from '@/services/staleWhileRevalidateApiAdapter';
-import { createApi } from '@/services/apiAdapter';
+import { useStaleWhileRevalidateApi } from '@/infrastructure/staleWhileRevalidateApiAdapter';
+import { createApi } from '@/infrastructure/api/apiAdapter';
 
 export function useFindSimilarProduct(product: Product): Product[] {
   const api = createApi();

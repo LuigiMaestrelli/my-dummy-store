@@ -1,5 +1,5 @@
-import { AppBar } from '@/ui/components/common/AppBar';
-import { Footer } from '@/ui/components/common/Footer';
+import { AppBar } from '@/presentation/components/common/AppBar';
+import { Footer } from '@/presentation/components/common/Footer';
 
 import styles from './Layout.module.css';
 

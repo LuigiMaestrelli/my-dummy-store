@@ -10,8 +10,8 @@ import Document, {
 } from 'next/document';
 import createEmotionServer from '@emotion/server/create-instance';
 
-import theme from '@/ui/theme';
-import createEmotionCache from '@/ui/theme/createEmotionCache';
+import theme from '@/presentation/theme';
+import createEmotionCache from '@/presentation/theme/createEmotionCache';
 
 class MyDocument extends Document {
   static async getInitialProps(

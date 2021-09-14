@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 
-import { ProductCard } from '@/ui/components/products/ProductCard';
+import { ProductCard } from '@/presentation/components/products/ProductCard';
 
 import { Product } from '@/domain/product';
 

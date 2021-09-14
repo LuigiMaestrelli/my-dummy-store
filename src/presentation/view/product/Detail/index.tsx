@@ -10,12 +10,12 @@ import Grid from '@mui/material/Grid';
 import Tooltip from '@mui/material/Tooltip';
 
 import { Product } from '@/domain/product';
-import { useDecimalFormatter } from '@/services/decimalFormatterAdapter';
-import { AlertContext } from '@/ui/contexts/AlertContext';
+import { useDecimalFormatter } from '@/infrastructure/decimalFormatterAdapter';
+import { AlertContext } from '@/presentation/contexts/AlertContext';
 import { useFindSimilarProduct } from '@/application/product/findSimilarProduct';
 
-import { ProductImageView } from '@/ui/components/products/ProductImageView';
-import { SimilarProductCard } from '@/ui/components/products/SimilarProductCard';
+import { ProductImageView } from '@/presentation/components/products/ProductImageView';
+import { SimilarProductCard } from '@/presentation/components/products/SimilarProductCard';
 
 export type ProductDetailViewProps = {
   product: Product;

@@ -7,13 +7,13 @@ import { useRouter } from 'next/router';
 import { ParsedUrlQuery } from 'querystring';
 
 import { Product } from '@/domain/product';
-import { createApi } from '@/services/apiAdapter';
+import { createApi } from '@/infrastructure/api/apiAdapter';
 
 import ProductDetailView, {
   ProductDetailViewProps
-} from '@/ui/view/product/Detail';
-import LoadingDetailView from '@/ui/view/product/LoadingDetail';
-import { Layout } from '@/ui/components/common/Layout';
+} from '@/presentation/view/product/Detail';
+import LoadingDetailView from '@/presentation/view/product/LoadingDetail';
+import { Layout } from '@/presentation/components/common/Layout';
 
 interface QueryParams extends ParsedUrlQuery {
   productId: string;

@@ -1,10 +1,10 @@
 import type { GetStaticPropsResult } from 'next';
 
 import { Product } from '@/domain/product';
-import { createApi } from '@/services/apiAdapter';
+import { createApi } from '@/infrastructure/api/apiAdapter';
 
-import HomeView, { HomeViewProps } from '@/ui/view/main/Home';
-import { Layout } from '@/ui/components/common/Layout';
+import HomeView, { HomeViewProps } from '@/presentation/view/main/Home';
+import { Layout } from '@/presentation/components/common/Layout';
 
 export async function getStaticProps(): Promise<
   GetStaticPropsResult<HomeViewProps>

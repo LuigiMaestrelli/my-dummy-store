@@ -10,7 +10,7 @@ import {
 import AccessAlarmIcon from '@mui/icons-material/Star';
 
 import { Product } from '@/domain/product';
-import { useDecimalFormatter } from '@/services/decimalFormatterAdapter';
+import { useDecimalFormatter } from '@/infrastructure/decimalFormatterAdapter';
 
 import styles from './ProductCard.module.css';
 

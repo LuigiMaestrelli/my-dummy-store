@@ -9,10 +9,10 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Tooltip from '@mui/material/Tooltip';
 
-import { Product } from '@/domain/product';
-import { useDecimalFormatter } from '@/infrastructure/decimalFormatterAdapter';
+import { Product } from '@/domain/models/product';
+import { useDecimalFormatter } from '@/infrastructure/intlNumberDecimalFormatter';
 import { AlertContext } from '@/presentation/contexts/AlertContext';
-import { useFindSimilarProduct } from '@/application/product/findSimilarProduct';
+import { useFindSimilarProduct } from '@/application/usecases/product/findSimilarProduct';
 
 import { ProductImageView } from '@/presentation/components/products/ProductImageView';
 import { SimilarProductCard } from '@/presentation/components/products/SimilarProductCard';
@@ -24,7 +24,8 @@ export type ProductDetailViewProps = {
 export default function ProductDetailView({ product }: ProductDetailViewProps) {
   const { formatCurrent, format } = useDecimalFormatter();
   const { showAlertDialog } = useContext(AlertContext);
-  const similarProducts = useFindSimilarProduct(product);
+  const { useFindSimilar } = useFindSimilarProduct();
+  const similarProducts = useFindSimilar(product);
 
   const handleBuyNowClick = () => {
     showAlertDialog('Hello!', 'Not done yet');

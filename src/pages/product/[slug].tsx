@@ -6,8 +6,8 @@ import type {
 import { useRouter } from 'next/router';
 import { ParsedUrlQuery } from 'querystring';
 
-import { Product } from '@/domain/product';
-import { createApi } from '@/infrastructure/api/apiAdapter';
+import { Product } from '@/domain/models/product';
+import { createApi } from '@/infrastructure/axiosApiClient';
 
 import ProductDetailView, {
   ProductDetailViewProps

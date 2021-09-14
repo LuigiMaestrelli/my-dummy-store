@@ -11,7 +11,7 @@ import Typography from '@mui/material/Typography';
 
 import { ProductCard } from '@/presentation/components/products/ProductCard';
 
-import { Product } from '@/domain/product';
+import { Product } from '@/domain/models/product';
 
 export type SearchViewProps = {
   search: string;

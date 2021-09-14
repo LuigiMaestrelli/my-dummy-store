@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 
-import { Product } from '@/domain/product';
+import { Product } from '@/domain/models/product';
 
 import styles from './SimilarProductCard.module.css';
 

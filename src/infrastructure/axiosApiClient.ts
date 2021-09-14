@@ -1,8 +1,8 @@
 import {
-  ApiService,
+  ApiClient,
   ApiResponse,
   ApiRequestConfig
-} from '@/infrastructure/ports/apiService';
+} from '@/application/protocols/apiClient';
 import axios from 'axios';
 
 const axiosApi = axios.create({
@@ -82,7 +82,7 @@ async function patchRequest<TResponse>(
   };
 }
 
-export function createApi(): ApiService {
+export function createApi(): ApiClient {
   return {
     get: getRequest,
     post: postRequest,

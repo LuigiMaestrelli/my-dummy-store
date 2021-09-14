@@ -1,8 +1,8 @@
 import type { GetServerSidePropsResult, GetServerSidePropsContext } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 
-import { Product } from '@/domain/product';
-import { createApi } from '@/infrastructure/api/apiAdapter';
+import { Product } from '@/domain/models/product';
+import { createApi } from '@/infrastructure/axiosApiClient';
 
 import SearchView, { SearchViewProps } from '@/presentation/view/main/Search';
 import { Layout } from '@/presentation/components/common/Layout';

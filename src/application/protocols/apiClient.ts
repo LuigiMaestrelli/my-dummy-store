@@ -41,7 +41,7 @@ export type ApiRequestConfig = {
   onDownloadProgress?: (progressEvent: any) => void;
 };
 
-export interface ApiService {
+export interface ApiClient {
   get<TResponse>(
     url: string,
     config?: ApiRequestConfig

@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid';
 
 import { ProductCard } from '@/presentation/components/products/ProductCard';
 
-import { Product } from '@/domain/product';
+import { Product } from '@/domain/models/product';
 
 export type HomeViewProps = {
   products: Product[];

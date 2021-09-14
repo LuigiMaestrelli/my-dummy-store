@@ -1,7 +1,7 @@
 import useSWR from 'swr';
 
 type FetcherType<TFetcherResponse> = (url: string) => Promise<TFetcherResponse>;
-
+// TODO - Make interface
 export function useStaleWhileRevalidateApi<TResponse>(
   requestUrl: string,
   fetcher: FetcherType<TResponse>

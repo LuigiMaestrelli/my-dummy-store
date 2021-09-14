@@ -1,7 +1,7 @@
 import type { GetStaticPropsResult } from 'next';
 
-import { Product } from '@/domain/product';
-import { createApi } from '@/infrastructure/api/apiAdapter';
+import { Product } from '@/domain/models/product';
+import { createApi } from '@/infrastructure/axiosApiClient';
 
 import HomeView, { HomeViewProps } from '@/presentation/view/main/Home';
 import { Layout } from '@/presentation/components/common/Layout';

@@ -1,4 +1,4 @@
-import { DecimalFormatterService } from '@/infrastructure/ports/decimalFormatterService';
+import { DecimalFormatter } from '@/application/protocols/decimalFormatter';
 
 const currencyFormatter = new Intl.NumberFormat('pt-BR', {
   style: 'currency',
@@ -10,7 +10,7 @@ const defaultFormatter = new Intl.NumberFormat('pt-BR', {
   minimumFractionDigits: 2
 });
 
-export function useDecimalFormatter(): DecimalFormatterService {
+export function useDecimalFormatter(): DecimalFormatter {
   function formatCurrent(value: number): string {
     return currencyFormatter.format(value);
   }

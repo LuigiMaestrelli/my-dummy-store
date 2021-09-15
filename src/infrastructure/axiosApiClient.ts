@@ -3,13 +3,21 @@ import {
   ApiResponse,
   ApiRequestConfig
 } from '@/application/protocols/apiClient';
-import axios from 'axios';
+import axios, { AxiosInstance } from 'axios';
 
-const axiosApi = axios.create({
+const axiosApi: AxiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API
 });
 
 export class AxiosApiClient implements IApiClient {
+  updateAuth = (token: string) => {
+    if (token) {
+      axiosApi.defaults.headers.Authorization = `Bearer ${token}`;
+    } else {
+      axiosApi.defaults.headers.Authorization = null;
+    }
+  };
+
   async get<TResponse>(
     url: string,
     config?: ApiRequestConfig

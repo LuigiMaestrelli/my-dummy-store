@@ -66,4 +66,5 @@ export interface IApiClient {
     url: string,
     config?: ApiRequestConfig
   ): Promise<ApiResponse<TResponse>>;
+  updateAuth(token: string): void;
 }

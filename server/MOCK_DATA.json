@@ -30625,6 +30625,7 @@
   ],
   "users": [
     {
+      "id": 1,
       "address": {
         "geolocation": {
           "lat": "-37.3159",
@@ -30635,17 +30636,14 @@
         "number": 7682,
         "zipcode": "12926-3874"
       },
-      "id": 1,
       "email": "john@gmail.com",
       "password": "m38rmF$",
-      "name": {
-        "firstname": "john",
-        "lastname": "doe"
-      },
+      "name": "john doe",
       "phone": "1-570-236-7033",
       "avatar": "https://i.pravatar.cc/300?img=1"
     },
     {
+      "id": 2,
       "address": {
         "geolocation": {
           "lat": "-37.3159",
@@ -30656,17 +30654,14 @@
         "number": 7267,
         "zipcode": "12926-3874"
       },
-      "id": 2,
       "email": "morrison@gmail.com",
       "password": "83r5^_",
-      "name": {
-        "firstname": "david",
-        "lastname": "morrison"
-      },
+      "name": "david orrison",
       "phone": "1-570-236-7033",
       "avatar": "https://i.pravatar.cc/300?img=2"
     },
     {
+      "id": 3,
       "address": {
         "geolocation": {
           "lat": "40.3467",
@@ -30677,17 +30672,14 @@
         "number": 86,
         "zipcode": "29567-1452"
       },
-      "id": 3,
       "email": "kevin@gmail.com",
       "password": "kev02937@",
-      "name": {
-        "firstname": "kevin",
-        "lastname": "ryan"
-      },
+      "name": "kevin yan",
       "phone": "1-567-094-1345",
       "avatar": "https://i.pravatar.cc/300?img=3"
     },
     {
+      "id": 4,
       "address": {
         "geolocation": {
           "lat": "50.3467",
@@ -30698,17 +30690,14 @@
         "number": 6454,
         "zipcode": "98234-1734"
       },
-      "id": 4,
       "email": "don@gmail.com",
       "password": "ewedon",
-      "name": {
-        "firstname": "don",
-        "lastname": "romer"
-      },
+      "name": "don romer",
       "phone": "1-765-789-6734",
       "avatar": "https://i.pravatar.cc/300?img=4"
     },
     {
+      "id": 5,
       "address": {
         "geolocation": {
           "lat": "40.3467",
@@ -30719,17 +30708,14 @@
         "number": 245,
         "zipcode": "80796-1234"
       },
-      "id": 5,
       "email": "derek@gmail.com",
       "password": "jklg*_56",
-      "name": {
-        "firstname": "derek",
-        "lastname": "powell"
-      },
+      "name": "derek owell",
       "phone": "1-956-001-1945",
       "avatar": "https://i.pravatar.cc/300?img=5"
     },
     {
+      "id": 6,
       "address": {
         "geolocation": {
           "lat": "20.1677",
@@ -30740,17 +30726,14 @@
         "number": 124,
         "zipcode": "12346-0456"
       },
-      "id": 6,
       "email": "david_r@gmail.com",
       "password": "3478*#54",
-      "name": {
-        "firstname": "david",
-        "lastname": "russell"
-      },
+      "name": "david ussell",
       "phone": "1-678-345-9856",
       "avatar": "https://i.pravatar.cc/300?img=6"
     },
     {
+      "id": 7,
       "address": {
         "geolocation": {
           "lat": "10.3456",
@@ -30761,17 +30744,14 @@
         "number": 1342,
         "zipcode": "96378-0245"
       },
-      "id": 7,
       "email": "miriam@gmail.com",
       "password": "f238&@*$",
-      "name": {
-        "firstname": "miriam",
-        "lastname": "snyder"
-      },
+      "name": "miriam yder",
       "phone": "1-123-943-0563",
       "avatar": "https://i.pravatar.cc/300?img=7"
     },
     {
+      "id": 8,
       "address": {
         "geolocation": {
           "lat": "50.3456",
@@ -30782,17 +30762,14 @@
         "number": 1342,
         "zipcode": "96378-0245"
       },
-      "id": 8,
       "email": "william@gmail.com",
       "password": "William56$hj",
-      "name": {
-        "firstname": "william",
-        "lastname": "hopkins"
-      },
+      "name": "william kins",
       "phone": "1-478-001-0890",
       "avatar": "https://i.pravatar.cc/300?img=8"
     },
     {
+      "id": 9,
       "address": {
         "geolocation": {
           "lat": "40.12456",
@@ -30803,17 +30780,14 @@
         "number": 345,
         "zipcode": "96378-0245"
       },
-      "id": 9,
       "email": "kate@gmail.com",
       "password": "kfejk@*_",
-      "name": {
-        "firstname": "kate",
-        "lastname": "hale"
-      },
+      "name": "kate hale",
       "phone": "1-678-456-1934",
       "avatar": "https://i.pravatar.cc/300?img=9"
     },
     {
+      "id": 10,
       "address": {
         "geolocation": {
           "lat": "30.24788",
@@ -30824,15 +30798,29 @@
         "number": 526,
         "zipcode": "10256-4532"
       },
-      "id": 10,
       "email": "jimmie@gmail.com",
       "password": "klein*#%*",
-      "name": {
-        "firstname": "jimmie",
-        "lastname": "klein"
-      },
+      "name": "jimmie ein",
       "phone": "1-104-001-4567",
       "avatar": "https://i.pravatar.cc/300?img=10"
+    },
+    {
+      "id": 11,
+      "address": {
+        "geolocation": {
+          "lat": "30.24788",
+          "long": "-20.545419"
+        },
+        "city": "fort wayne",
+        "street": "oak lawn ave",
+        "number": 526,
+        "zipcode": "10256-4532"
+      },
+      "email": "teste@teste.com",
+      "password": "teste",
+      "name": "luigi maestrelli",
+      "phone": "1-104-001-4567",
+      "avatar": "https://i.pravatar.cc/300?img=11"
     }
   ]
 }

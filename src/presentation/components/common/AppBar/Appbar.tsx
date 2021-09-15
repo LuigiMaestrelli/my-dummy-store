@@ -5,7 +5,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-import { Offset, SearchBar } from './components';
+import { Offset, SearchBar, Avatar } from './components';
 
 import styles from './AppBar.module.css';
 
@@ -28,6 +28,7 @@ export function AppBar() {
           </Link>
           <SearchBar onSearch={handleSearch} />
           <Box sx={{ flexGrow: 1 }} />
+          <Avatar />
         </Toolbar>
       </MuiAppBar>
       <Offset className={styles.appBar} />

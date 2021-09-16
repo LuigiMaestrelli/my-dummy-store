@@ -35,18 +35,18 @@ function MyApp(props: MyAppProps) {
   return (
     <CacheProvider value={emotionCache}>
       <ThemeProvider>
-        <AuthProvider
-          authUseCase={useUserUseCase()}
-          apiClient={getApiClient()}
-          cookieContainer={getCookieContainer()}
-          userApiClient={getUserApiClient()}
-        >
-          <AlertProvider>
+        <AlertProvider>
+          <AuthProvider
+            authUseCase={useUserUseCase()}
+            apiClient={getApiClient()}
+            cookieContainer={getCookieContainer()}
+            userApiClient={getUserApiClient()}
+          >
             <Layout {...pageProps}>
               <Component {...pageProps} />
             </Layout>
-          </AlertProvider>
-        </AuthProvider>
+          </AuthProvider>
+        </AlertProvider>
       </ThemeProvider>
     </CacheProvider>
   );

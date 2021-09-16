@@ -9,14 +9,13 @@ import { useAuthContext } from '@/main/contexts/authContext';
 
 export function Avatar() {
   const [anchorEl, setAnchorEl] = useState(null);
-  const { isAuthenticated, user, signOut, signIn } = useAuthContext();
+  const { isAuthenticated, user, signOut, openLoginDialog } = useAuthContext();
 
   const handleMenu = async (event: any) => {
     if (isAuthenticated) {
       setAnchorEl(event.currentTarget);
     } else {
-      // TODO: Login screen
-      await signIn('teste@teste.com', 'teste');
+      openLoginDialog();
     }
   };
 

@@ -5,9 +5,12 @@ import { IApiClient } from '@/application/protocols/apiClient';
 import { ICookieContainer } from '@/application/protocols/cookieContainer';
 import { IUserApiClient } from '@/application/protocols/user/userApiClient';
 
+import { SignInDialog } from '@/presentation/components/auth/SignInDialog';
+
 export type AuthContextType = {
   isAuthenticated: boolean;
   user: User | null;
+  openLoginDialog: () => void;
   signIn: (email: string, password: string) => Promise<void>;
   signOut: () => Promise<void>;
 };
@@ -32,6 +35,7 @@ export function AuthProvider({
   userApiClient
 }: AuthProviderType) {
   const [user, setUser] = useState<User | null>(null);
+  const [isSignInDialogOpen, setSignInDialogOpen] = useState<boolean>(false);
   const isAuthenticated = !!user;
 
   useEffect(() => {
@@ -42,10 +46,12 @@ export function AuthProvider({
       setUser(user);
     });
   }, [cookieContainer, userApiClient]);
+
   // TODO: test token is being send to the server
   // TODO: test server side functions with they have access to the token
   async function signIn(email: string, password: string) {
     const { token, user } = await authUseCase.signIn(email, password);
+
     apiClient.updateAuth(token);
     cookieContainer.setCookie(COOKIE_NAME, token, 60 * 60 * 5); // 5 hours
     setUser(user);
@@ -58,8 +64,27 @@ export function AuthProvider({
     setUser(null);
   }
 
+  function openLoginDialog() {
+    setSignInDialogOpen(true);
+  }
+
+  function handleCloseLoginDialog() {
+    setSignInDialogOpen(false);
+  }
+
+  async function handleSignInDialog(email: string, password: string) {
+    await signIn(email, password);
+  }
+
   return (
-    <AuthContext.Provider value={{ isAuthenticated, user, signIn, signOut }}>
+    <AuthContext.Provider
+      value={{ isAuthenticated, user, signIn, signOut, openLoginDialog }}
+    >
+      <SignInDialog
+        open={isSignInDialogOpen}
+        onClose={handleCloseLoginDialog}
+        onSignIn={handleSignInDialog}
+      />
       {children}
     </AuthContext.Provider>
   );

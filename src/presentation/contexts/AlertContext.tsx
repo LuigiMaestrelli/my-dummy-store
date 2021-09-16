@@ -39,13 +39,13 @@ export function AlertProvider({ children }: AlertProviderType) {
 
   return (
     <AlertContext.Provider value={{ showAlertDialog }}>
-      {children}
       <AlertDialog
         open={alertDialogInfo.open}
         title={alertDialogInfo.title}
         content={alertDialogInfo.content}
         onClose={handleAlertDialogClose}
       />
+      {children}
     </AlertContext.Provider>
   );
 }

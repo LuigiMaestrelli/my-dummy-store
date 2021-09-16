@@ -7,6 +7,6 @@ const userApiClient = getUserApiClient();
 const uuidGenerator = getUUIDGenerator();
 const authUseCase = new AuthenticationUseCase(userApiClient, uuidGenerator);
 
-export function useUserUseCase(): IAuthenticationUseCase {
+export function useAuthUseCase(): IAuthenticationUseCase {
   return authUseCase;
 }

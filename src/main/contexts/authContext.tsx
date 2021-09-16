@@ -1,9 +1,9 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import { User } from '@/domain/models/user';
 
-import { useUserUseCase } from '@/main/factories/usecases/auth/authUseCase';
+import { useAuthUseCase } from '@/main/factories/usecases/auth/authUseCase';
+import { useUserUseCase } from '@/main/factories/usecases/user/userUseCase';
 import { getApiClient } from '@/main/factories/infrastructure/apiClient';
-import { getUserApiClient } from '@/main/factories/infrastructure/user/userApiClient';
 import { getCookieContainer } from '@/main/factories/infrastructure/cookieContainer';
 
 import { SignInDialog } from '@/presentation/components/auth/SignInDialog';
@@ -25,12 +25,12 @@ const AUTH_COOKIE_NAME = process.env.NEXT_PUBLIC_AUTH_TOKEN_NAME || '';
 
 const cookieContainer = getCookieContainer();
 const apiClient = getApiClient();
-const userApiClient = getUserApiClient();
 
 export function AuthProvider({ children }: AuthProviderType) {
   const [user, setUser] = useState<User | null>(null);
   const [isSignInDialogOpen, setSignInDialogOpen] = useState<boolean>(false);
-  const authUseCase = useUserUseCase();
+  const authUseCase = useAuthUseCase();
+  const userUseCase = useUserUseCase();
 
   const isAuthenticated = !!user;
 
@@ -40,8 +40,8 @@ export function AuthProvider({ children }: AuthProviderType) {
 
     apiClient.updateAuth(authCookie);
 
-    userApiClient
-      .findByAuthToken(authCookie)
+    userUseCase
+      .findByToken(authCookie)
       .then(user => {
         setUser(user);
       })
@@ -50,7 +50,7 @@ export function AuthProvider({ children }: AuthProviderType) {
         cookieContainer.deleteCookie(AUTH_COOKIE_NAME);
         apiClient.updateAuth('');
       });
-  }, []);
+  }, [userUseCase]);
 
   async function signIn(email: string, password: string) {
     const { token, user } = await authUseCase.signIn(email, password);

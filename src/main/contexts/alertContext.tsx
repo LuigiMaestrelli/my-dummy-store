@@ -1,5 +1,4 @@
-import React, { createContext, useState } from 'react';
-
+import React, { createContext, useState, useContext } from 'react';
 import { AlertDialog } from '@/presentation/components/common/Dialog';
 
 export type AlertContextType = {
@@ -16,7 +15,7 @@ type AlertDialogInfoType = {
   content: string;
 };
 
-export const AlertContext = createContext({} as AlertContextType);
+const AlertContext = createContext({} as AlertContextType);
 
 export function AlertProvider({ children }: AlertProviderType) {
   const [alertDialogInfo, setAlertDialogInfo] = useState<AlertDialogInfoType>({
@@ -48,4 +47,8 @@ export function AlertProvider({ children }: AlertProviderType) {
       {children}
     </AlertContext.Provider>
   );
+}
+
+export function useAlertContext(): AlertContextType {
+  return useContext(AlertContext);
 }

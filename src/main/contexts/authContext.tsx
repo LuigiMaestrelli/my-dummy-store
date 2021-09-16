@@ -1,9 +1,10 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, useContext } from 'react';
 import { User } from '@/domain/models/user';
-import { IAuthenticationUseCase } from '@/domain/usecases/auth/authUseCase';
-import { IApiClient } from '@/application/protocols/apiClient';
-import { ICookieContainer } from '@/application/protocols/cookieContainer';
-import { IUserApiClient } from '@/application/protocols/user/userApiClient';
+
+import { useUserUseCase } from '@/main/factories/usecases/auth/authUseCase';
+import { getApiClient } from '@/main/factories/infrastructure/apiClient';
+import { getUserApiClient } from '@/main/factories/infrastructure/user/userApiClient';
+import { getCookieContainer } from '@/main/factories/infrastructure/cookieContainer';
 
 import { SignInDialog } from '@/presentation/components/auth/SignInDialog';
 
@@ -17,25 +18,20 @@ export type AuthContextType = {
 
 type AuthProviderType = {
   children: React.ReactElement;
-  authUseCase: IAuthenticationUseCase;
-  apiClient: IApiClient;
-  cookieContainer: ICookieContainer;
-  userApiClient: IUserApiClient;
 };
 
-export const AuthContext = createContext({} as AuthContextType);
-
+const AuthContext = createContext({} as AuthContextType);
 const AUTH_COOKIE_NAME = process.env.NEXT_PUBLIC_AUTH_TOKEN_NAME || '';
 
-export function AuthProvider({
-  children,
-  authUseCase,
-  apiClient,
-  cookieContainer,
-  userApiClient
-}: AuthProviderType) {
+const cookieContainer = getCookieContainer();
+const apiClient = getApiClient();
+const userApiClient = getUserApiClient();
+
+export function AuthProvider({ children }: AuthProviderType) {
   const [user, setUser] = useState<User | null>(null);
   const [isSignInDialogOpen, setSignInDialogOpen] = useState<boolean>(false);
+  const authUseCase = useUserUseCase();
+
   const isAuthenticated = !!user;
 
   useEffect(() => {
@@ -54,7 +50,7 @@ export function AuthProvider({
         cookieContainer.deleteCookie(AUTH_COOKIE_NAME);
         apiClient.updateAuth('');
       });
-  }, [cookieContainer, userApiClient, apiClient]);
+  }, []);
 
   async function signIn(email: string, password: string) {
     const { token, user } = await authUseCase.signIn(email, password);
@@ -95,4 +91,8 @@ export function AuthProvider({
       {children}
     </AuthContext.Provider>
   );
+}
+
+export function useAuthContext(): AuthContextType {
+  return useContext(AuthContext);
 }

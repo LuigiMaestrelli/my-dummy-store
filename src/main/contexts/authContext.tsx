@@ -8,7 +8,7 @@ import { getCookieContainer } from '@/main/factories/infrastructure/cookieContai
 
 import { SignInDialog } from '@/presentation/components/auth/SignInDialog';
 
-export type AuthContextType = {
+type AuthContextType = {
   isAuthenticated: boolean;
   user: User | null;
   openLoginDialog: () => void;

@@ -25,7 +25,7 @@ type AuthProviderType = {
 
 export const AuthContext = createContext({} as AuthContextType);
 
-const COOKIE_NAME = 'dummy-store.token';
+const AUTH_COOKIE_NAME = process.env.NEXT_PUBLIC_AUTH_TOKEN_NAME || '';
 
 export function AuthProvider({
   children,
@@ -39,28 +39,35 @@ export function AuthProvider({
   const isAuthenticated = !!user;
 
   useEffect(() => {
-    const authCookie = cookieContainer.getCookie(COOKIE_NAME);
+    const authCookie = cookieContainer.getCookie(AUTH_COOKIE_NAME);
     if (!authCookie) return;
 
-    userApiClient.findByAuthToken(authCookie).then(user => {
-      setUser(user);
-    });
-  }, [cookieContainer, userApiClient]);
+    apiClient.updateAuth(authCookie);
 
-  // TODO: test token is being send to the server
-  // TODO: test server side functions with they have access to the token
+    userApiClient
+      .findByAuthToken(authCookie)
+      .then(user => {
+        setUser(user);
+      })
+      .catch(() => {
+        setUser(null);
+        cookieContainer.deleteCookie(AUTH_COOKIE_NAME);
+        apiClient.updateAuth('');
+      });
+  }, [cookieContainer, userApiClient, apiClient]);
+
   async function signIn(email: string, password: string) {
     const { token, user } = await authUseCase.signIn(email, password);
 
     apiClient.updateAuth(token);
-    cookieContainer.setCookie(COOKIE_NAME, token, 60 * 60 * 5); // 5 hours
+    cookieContainer.setCookie(AUTH_COOKIE_NAME, token, 60 * 60 * 5); // 5 hours
     setUser(user);
   }
 
   async function signOut() {
     await authUseCase.signOut();
     apiClient.updateAuth('');
-    cookieContainer.deleteCookie(COOKIE_NAME);
+    cookieContainer.deleteCookie(AUTH_COOKIE_NAME);
     setUser(null);
   }
 

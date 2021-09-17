@@ -1,4 +1,5 @@
 import type { GetStaticPropsResult } from 'next';
+import Head from 'next/head';
 
 import { getProductApiClient } from '@/main/factories/infrastructure/product/productApiClient';
 
@@ -22,6 +23,15 @@ export async function getStaticProps(): Promise<
   };
 }
 
-export default HomeView;
+export default function HomePage(props: HomeViewProps) {
+  return (
+    <>
+      <Head>
+        <title>My dummy store</title>
+      </Head>
+      <HomeView {...props} />
+    </>
+  );
+}
 
-(HomeView as any).Layout = Layout;
+HomePage.Layout = Layout;

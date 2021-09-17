@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import type { GetServerSidePropsResult, GetServerSidePropsContext } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 
@@ -5,6 +6,19 @@ import { getProductApiClient } from '@/main/factories/infrastructure/product/pro
 
 import SearchView, { SearchViewProps } from '@/presentation/view/main/Search';
 import { Layout } from '@/presentation/components/common/Layout';
+
+export default function SearchPage(props: SearchViewProps) {
+  return (
+    <>
+      <Head>
+        <title>My dummy store</title>
+      </Head>
+      <SearchView {...props} />
+    </>
+  );
+}
+
+SearchPage.Layout = Layout;
 
 interface QueryParams extends ParsedUrlQuery {
   search: string;
@@ -41,6 +55,3 @@ export async function getServerSideProps(
     }
   };
 }
-
-export default SearchView;
-(SearchView as any).Layout = Layout;

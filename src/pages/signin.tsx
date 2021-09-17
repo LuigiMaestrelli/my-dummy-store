@@ -1,10 +1,20 @@
+import Head from 'next/head';
 import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 
 import { getStateManagement } from '@/main/factories/infrastructure/stateManagement';
-import LoginView, { LoginViewProps } from '@/presentation/view/main/SignIn';
+import SignInView, { SignInViewProps } from '@/presentation/view/main/SignIn';
 
-export default LoginView;
+export default function SignInPage(props: SignInViewProps) {
+  return (
+    <>
+      <Head>
+        <title>Sign-In</title>
+      </Head>
+      <SignInView {...props} />
+    </>
+  );
+}
 
 interface UrlQueryParams extends ParsedUrlQuery {
   redirectUrl?: string;
@@ -12,7 +22,7 @@ interface UrlQueryParams extends ParsedUrlQuery {
 
 export async function getServerSideProps(
   ctx: GetServerSidePropsContext
-): Promise<GetServerSidePropsResult<LoginViewProps>> {
+): Promise<GetServerSidePropsResult<SignInViewProps>> {
   const stateManagement = getStateManagement();
   if (stateManagement.isAuthenticated(ctx)) {
     return {

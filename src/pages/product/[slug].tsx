@@ -3,6 +3,7 @@ import type {
   GetStaticPropsResult,
   GetStaticPropsContext
 } from 'next';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { ParsedUrlQuery } from 'querystring';
 
@@ -57,10 +58,24 @@ export default function ProductDetailPage({ product }: ProductDetailViewProps) {
   const { isFallback } = useRouter();
 
   if (isFallback) {
-    return <LoadingDetailView />;
+    return (
+      <>
+        <Head>
+          <title>Loading...</title>
+        </Head>
+        <LoadingDetailView />
+      </>
+    );
   }
 
-  return <ProductDetailView product={product} />;
+  return (
+    <>
+      <Head>
+        <title>{product.title}</title>
+      </Head>
+      <ProductDetailView product={product} />
+    </>
+  );
 }
 
 ProductDetailPage.Layout = Layout;

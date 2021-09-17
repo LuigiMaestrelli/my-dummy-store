@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import IconButton from '@mui/material/IconButton';
@@ -9,6 +10,7 @@ import { useAuthContext } from '@/main/contexts/authContext';
 
 export function Avatar() {
   const [anchorEl, setAnchorEl] = useState(null);
+  const router = useRouter();
   const { isAuthenticated, user, signOut, openLoginDialog } = useAuthContext();
 
   const handleMenu = async (event: any) => {
@@ -23,9 +25,14 @@ export function Avatar() {
     setAnchorEl(null);
   };
 
+  const handleProfile = () => {
+    handleClose();
+    router.push('/user');
+  };
+
   const handleSignOut = async () => {
+    handleClose();
     await signOut();
-    setAnchorEl(null);
   };
 
   return (
@@ -47,19 +54,16 @@ export function Avatar() {
 
       <Menu
         id="menu-app-bar"
+        keepMounted
         anchorEl={anchorEl}
         anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'right'
-        }}
-        keepMounted
-        transformOrigin={{
-          vertical: 'top',
+          vertical: 'bottom',
           horizontal: 'right'
         }}
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
+        <MenuItem onClick={handleProfile}>Profile</MenuItem>
         <MenuItem onClick={handleSignOut}>Sign out</MenuItem>
       </Menu>
     </div>

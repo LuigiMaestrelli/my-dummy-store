@@ -1,12 +1,14 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
+import { useRouter } from 'next/router';
+
 import { User } from '@/domain/models/user';
 
 import { useAuthUseCase } from '@/main/factories/usecases/auth/authUseCase';
 import { useUserUseCase } from '@/main/factories/usecases/user/userUseCase';
 import { getApiClient } from '@/main/factories/infrastructure/apiClient';
-import { getCookieContainer } from '@/main/factories/infrastructure/cookieContainer';
 
 import { SignInDialog } from '@/presentation/components/auth/SignInDialog';
+import { getStateManagement } from '@/main/factories/infrastructure/stateManagement';
 
 type AuthContextType = {
   isAuthenticated: boolean;
@@ -21,33 +23,33 @@ type AuthProviderType = {
 };
 
 const AuthContext = createContext({} as AuthContextType);
-const AUTH_COOKIE_NAME = process.env.NEXT_PUBLIC_AUTH_TOKEN_NAME || '';
 
-const cookieContainer = getCookieContainer();
 const apiClient = getApiClient();
+const stateManagement = getStateManagement();
 
 export function AuthProvider({ children }: AuthProviderType) {
   const [user, setUser] = useState<User | null>(null);
   const [isSignInDialogOpen, setSignInDialogOpen] = useState<boolean>(false);
   const authUseCase = useAuthUseCase();
   const userUseCase = useUserUseCase();
+  const router = useRouter();
 
   const isAuthenticated = !!user;
 
   useEffect(() => {
-    const authCookie = cookieContainer.getCookie(AUTH_COOKIE_NAME);
-    if (!authCookie) return;
+    const authToken = stateManagement.getAuthToken();
+    if (!authToken) return;
 
-    apiClient.updateAuth(authCookie);
+    apiClient.updateAuth(authToken);
 
     userUseCase
-      .findByToken(authCookie)
+      .findByToken(authToken)
       .then(user => {
         setUser(user);
       })
       .catch(() => {
         setUser(null);
-        cookieContainer.deleteCookie(AUTH_COOKIE_NAME);
+        stateManagement.removeAuthToken();
         apiClient.updateAuth('');
       });
   }, [userUseCase]);
@@ -56,15 +58,17 @@ export function AuthProvider({ children }: AuthProviderType) {
     const { token, user } = await authUseCase.signIn(email, password);
 
     apiClient.updateAuth(token);
-    cookieContainer.setCookie(AUTH_COOKIE_NAME, token, 60 * 60 * 5); // 5 hours
+    stateManagement.setAuthToken(token);
     setUser(user);
   }
 
   async function signOut() {
     await authUseCase.signOut();
     apiClient.updateAuth('');
-    cookieContainer.deleteCookie(AUTH_COOKIE_NAME);
+    stateManagement.removeAuthToken();
     setUser(null);
+
+    router.push('/');
   }
 
   function openLoginDialog() {

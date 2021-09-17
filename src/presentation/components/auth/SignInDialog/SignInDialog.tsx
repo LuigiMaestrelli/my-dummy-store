@@ -68,7 +68,7 @@ export function SignInDialog({ open, onClose, onSignIn }: SignInDialogProps) {
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
     >
-      <DialogTitle id="alert-dialog-title">Sign in</DialogTitle>
+      <DialogTitle id="alert-dialog-title">Sign-in</DialogTitle>
       <form onSubmit={formik.handleSubmit} noValidate>
         <DialogContent>
           <TextField
@@ -110,7 +110,7 @@ export function SignInDialog({ open, onClose, onSignIn }: SignInDialogProps) {
             {isLoading && (
               <CircularProgress size={20} sx={{ marginRight: 1 }} />
             )}
-            Sign in
+            Sign-in
           </Button>
           <Button onClick={handleClose}>Cancel</Button>
         </DialogActions>

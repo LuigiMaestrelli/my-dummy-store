@@ -13,8 +13,7 @@ import { useAlertContext } from '@/main/contexts/alertContext';
 import { useProductUseCase } from '@/main/factories/usecases/product/productUseCase';
 import { useDecimalFormatter } from '@/main/factories/infrastructure/decimalFormater';
 
-import { ProductImageView } from '@/presentation/components/products/ProductImageView';
-import { SimilarProductCard } from '@/presentation/components/products/SimilarProductCard';
+import { ProductImageView, SimilarProductCard } from './components';
 
 export type ProductDetailViewProps = {
   product: Product;
@@ -33,9 +32,6 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
 
     findSimilar(product).then(products => setSimilarProducts(products));
   }, [product, findSimilar]);
-
-  // const { useFindSimilar } = useFindSimilarProduct();
-  // const similarProducts = useFindSimilar(product);
 
   const handleBuyNowClick = () => {
     showAlertDialog('Hello!', 'Not done yet');

@@ -1,6 +1,7 @@
 {
   "*.{js,ts,jsx,tsx}": [
     "eslint",
-    "prettier --write"
+    "prettier --write", 
+    "yarn test:staged"
   ]
 }

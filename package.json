@@ -7,7 +7,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "react-scripts test",
+    "test": "jest --passWithNoTests",
+    "test:watch": "yarn jest --watch",
+    "test:ci": "yarn test --ci",
+    "test:coverage": "yarn test --coverage",
+    "test:staged": "yarn test --findRelatedTests",
+    "test:unit": "yarn test -c jest-unit.config.js",
+    "test:integration": "yarn test -c jest-integration.config.js",
     "prettier": "prettier --write \"**/*.{ts,tsx,css}\"",
     "server": "yarn json-server server/MOCK_DATA.json --port 3333",
     "prepare": "husky install"
@@ -34,10 +40,15 @@
     "yup": "^0.32.9"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.1.0",
+    "@testing-library/user-event": "^13.2.1",
+    "@types/prettier": "^2.3.2",
     "@types/react": "17.0.21",
     "@types/uuid": "^8.3.1",
     "@typescript-eslint/eslint-plugin": "^4.31.1",
     "@typescript-eslint/parser": "^4.31.1",
+    "babel-jest": "^27.2.0",
     "eslint": "^7.32.0",
     "eslint-config-next": "11.1.2",
     "eslint-config-prettier": "^8.3.0",
@@ -49,13 +60,13 @@
     "eslint-plugin-react": "^7.25.2",
     "git-commit-msg-linter": "^3.2.8",
     "husky": "^7.0.2",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^27.2.0",
+    "jest-sonar-reporter": "^2.0.0",
     "json-server": "^0.16.3",
     "lint-staged": "^11.1.2",
     "prettier": "^2.4.1",
-    "typescript": "4.4.3",
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^12.1.0",
-    "@testing-library/user-event": "^13.2.1"
+    "react-test-renderer": "^17.0.2",
+    "typescript": "4.4.3"
   }
 }

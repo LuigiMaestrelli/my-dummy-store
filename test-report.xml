@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testExecutions version="1">
+  <file path="C:\Projetos\my-dummy-store\__tests__\presentation\components\common\AppBar.spec.tsx">
+    <testCase name="AppBar renders the store title" duration="274"/>
+  </file>
+</testExecutions>

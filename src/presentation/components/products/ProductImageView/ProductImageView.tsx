@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
+
+import { Image } from '@/presentation/components/common/Image';
 
 import styles from './ProductImageView.module.css';
 

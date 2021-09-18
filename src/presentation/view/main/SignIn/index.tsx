@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 import Container from '@mui/material/Container';
 import Card from '@mui/material/Card';
@@ -10,6 +9,8 @@ import Box from '@mui/material/Box';
 
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+
+import { Image } from '@/presentation/components/common/Image';
 
 import { useAlertContext } from '@/main/contexts/alertContext';
 import { useAuthContext } from '@/main/contexts/authContext';

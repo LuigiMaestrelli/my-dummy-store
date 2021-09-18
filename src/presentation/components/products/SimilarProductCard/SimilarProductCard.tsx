@@ -1,9 +1,10 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 
 import { Product } from '@/domain/models/product';
+
+import { Image } from '@/presentation/components/common/Image';
 
 import styles from './SimilarProductCard.module.css';
 

@@ -1,7 +1,8 @@
 import Head from 'next/head';
-import Image from 'next/image';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+
+import { Image } from '@/presentation/components/common/Image';
 
 export default function NotFoundPage() {
   return (

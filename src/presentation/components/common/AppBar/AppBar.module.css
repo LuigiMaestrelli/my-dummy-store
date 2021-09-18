@@ -2,6 +2,10 @@
   margin-bottom: 1rem;
 }
 
+.bar {
+  flex-grow: 1;
+}
+
 .title {
   cursor: pointer;
 }

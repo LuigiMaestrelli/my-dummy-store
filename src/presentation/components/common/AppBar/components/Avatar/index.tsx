@@ -36,7 +36,7 @@ export function Avatar() {
   };
 
   return (
-    <div>
+    <div data-testid="user-avatar">
       <IconButton
         size="large"
         aria-label="account of current user"

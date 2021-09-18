@@ -45,11 +45,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   }
 }));
 
-type SearchBarProps = {
-  onSearch: (value: string) => void;
-};
-
-export function SearchBar({ onSearch }: SearchBarProps) {
+export function SearchBar() {
   const [searchText, setSearchText] = useState<string>('');
   const router = useRouter();
 
@@ -66,13 +62,13 @@ export function SearchBar({ onSearch }: SearchBarProps) {
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter' && searchText) {
-      onSearch(searchText);
+      router.push(`/search/${encodeURI(searchText)}`);
       event.preventDefault();
     }
   };
 
   return (
-    <Search>
+    <Search data-testid="app-bar-search">
       <SearchIconWrapper>
         <SearchIcon />
       </SearchIconWrapper>

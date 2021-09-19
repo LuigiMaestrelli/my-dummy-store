@@ -8,7 +8,7 @@ import { AppBar } from '@/presentation/components/common/AppBar';
 
 jest.mock('next/dist/client/router', () => require('next-router-mock'));
 
-describe('AppBar', () => {
+describe('AppBar Component', () => {
   beforeEach(() => {
     mockRouter.setCurrentUrl('/initial');
   });

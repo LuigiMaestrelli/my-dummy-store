@@ -11,13 +11,13 @@ import { useAuthContext } from '@/main/contexts/authContext';
 export function Avatar() {
   const [anchorEl, setAnchorEl] = useState(null);
   const router = useRouter();
-  const { isAuthenticated, user, signOut, openLoginDialog } = useAuthContext();
+  const { isAuthenticated, user, signOut, openSignInDialog } = useAuthContext();
 
   const handleMenu = async (event: any) => {
     if (isAuthenticated) {
       setAnchorEl(event.currentTarget);
     } else {
-      openLoginDialog();
+      openSignInDialog();
     }
   };
 
@@ -38,6 +38,7 @@ export function Avatar() {
   return (
     <div data-testid="user-avatar">
       <IconButton
+        data-testid="user-avatar-btn"
         size="large"
         aria-label="account of current user"
         aria-controls="menu-app-bar"
@@ -46,14 +47,22 @@ export function Avatar() {
         color="inherit"
       >
         {isAuthenticated ? (
-          <MuiAvatar alt={user?.name} src={user?.avatar} />
+          <MuiAvatar
+            data-testid="user-avatar-user-photo"
+            alt={user?.name}
+            src={user?.avatar}
+          />
         ) : (
-          <AccountCircle sx={{ fontSize: 40 }} />
+          <AccountCircle
+            data-testid="user-avatar-default-user-icon"
+            sx={{ fontSize: 40 }}
+          />
         )}
       </IconButton>
 
       <Menu
         id="menu-app-bar"
+        data-testid="menu-app-bar"
         keepMounted
         anchorEl={anchorEl}
         anchorOrigin={{
@@ -63,8 +72,12 @@ export function Avatar() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleProfile}>Profile</MenuItem>
-        <MenuItem onClick={handleSignOut}>Sign out</MenuItem>
+        <MenuItem data-testid="menu-app-bar-profile" onClick={handleProfile}>
+          Profile
+        </MenuItem>
+        <MenuItem data-testid="menu-app-bar-sign-out" onClick={handleSignOut}>
+          Sign out
+        </MenuItem>
       </Menu>
     </div>
   );

@@ -13,7 +13,7 @@ import { getStateManagement } from '@/main/factories/infrastructure/stateManagem
 type AuthContextType = {
   isAuthenticated: boolean;
   user: User | null;
-  openLoginDialog: () => void;
+  openSignInDialog: () => void;
   signIn: (email: string, password: string) => Promise<void>;
   signOut: () => Promise<void>;
 };
@@ -71,7 +71,7 @@ export function AuthProvider({ children }: AuthProviderType) {
     router.push('/');
   }
 
-  function openLoginDialog() {
+  function openSignInDialog() {
     setSignInDialogOpen(true);
   }
 
@@ -85,7 +85,7 @@ export function AuthProvider({ children }: AuthProviderType) {
 
   return (
     <AuthContext.Provider
-      value={{ isAuthenticated, user, signIn, signOut, openLoginDialog }}
+      value={{ isAuthenticated, user, signIn, signOut, openSignInDialog }}
     >
       <SignInDialog
         open={isSignInDialogOpen}

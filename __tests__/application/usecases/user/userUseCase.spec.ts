@@ -1,41 +1,11 @@
 import { IUserApiClient } from '@/application/protocols/user/userApiClient';
 import { UserUseCase } from '@/application/usecases/user/userUseCase';
-import { User } from '@/domain/models/user';
+
+import { makeUserApiClient } from '@test/utils/stubs/userApiClient';
 
 type SutTypes = {
   sut: UserUseCase;
   userApiClientStub: IUserApiClient;
-};
-
-const makeUserApiClient = (): IUserApiClient => {
-  class UserApiClientStub implements IUserApiClient {
-    async findById(id: number): Promise<User | null> {
-      return {
-        id: 1,
-        name: 'valid name',
-        email: 'valid email',
-        avatar: 'valid avatar url'
-      };
-    }
-
-    async findByAuthToken(token: string): Promise<User | null> {
-      return {
-        id: 1,
-        name: 'valid name',
-        email: 'valid email',
-        avatar: 'valid avatar url'
-      };
-    }
-
-    findByEmailAndPassword(
-      email: string,
-      password: string
-    ): Promise<User | null> {
-      throw new Error('Method not implemented.');
-    }
-  }
-
-  return new UserApiClientStub();
 };
 
 const makeSut = (): SutTypes => {

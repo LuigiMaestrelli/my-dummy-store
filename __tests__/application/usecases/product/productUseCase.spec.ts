@@ -1,50 +1,11 @@
-import {
-  FindOptions,
-  IProductApiClient
-} from '@/application/protocols/product/productApiClient';
+import { IProductApiClient } from '@/application/protocols/product/productApiClient';
 import { ProductUseCase } from '@/application/usecases/product/productUseCase';
-import { Product } from '@/domain/models/product';
+
+import { makeProductApiClient } from '@test/utils/stubs/productApiClient';
 
 type SutTypes = {
   sut: ProductUseCase;
   productApiClientStub: IProductApiClient;
-};
-
-const makeProductApiClient = (): IProductApiClient => {
-  class ProductApiClientStub implements IProductApiClient {
-    findById(id: number): Promise<Product | null> {
-      throw new Error('Method not implemented.');
-    }
-
-    findBySlug(slug: string): Promise<Product | null> {
-      throw new Error('Method not implemented.');
-    }
-
-    async findSimilar(id: number, category: string): Promise<Product[]> {
-      return [
-        {
-          id: 2,
-          title: 'valid title',
-          slug: 'valid slug',
-          price: 5,
-          description: 'valid description',
-          category: 'valid category',
-          image: 'valid image url',
-          otherImages: [],
-          rating: {
-            count: 1,
-            rate: 3
-          }
-        }
-      ];
-    }
-
-    find(options?: FindOptions): Promise<[Product[], number]> {
-      throw new Error('Method not implemented.');
-    }
-  }
-
-  return new ProductApiClientStub();
 };
 
 const makeSut = (): SutTypes => {

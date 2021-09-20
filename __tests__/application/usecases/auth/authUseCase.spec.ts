@@ -2,48 +2,14 @@ import { IUserApiClient } from '@/application/protocols/user/userApiClient';
 import { IUUIDGenerator } from '@/application/protocols/uuidGenerator';
 import { AuthenticationUseCase } from '@/application/usecases/auth/authUseCase';
 import { UnauthorizedError } from '@/domain/errors';
-import { User } from '@/domain/models/user';
+
+import { makeUserApiClient } from '@test/utils/stubs/userApiClient';
+import { makeUUIDGenerator } from '@test/utils/stubs/uuidGenerator';
 
 type SutTypes = {
   sut: AuthenticationUseCase;
   userApiClientStub: IUserApiClient;
   uuidGeneratorStub: IUUIDGenerator;
-};
-
-const makeUUIDGenerator = (): IUUIDGenerator => {
-  class UUIDGeneratorStub implements IUUIDGenerator {
-    generate(): string {
-      return 'valid uuid';
-    }
-  }
-
-  return new UUIDGeneratorStub();
-};
-
-const makeUserApiClient = (): IUserApiClient => {
-  class UserApiClientStub implements IUserApiClient {
-    findById(id: number): Promise<User | null> {
-      throw new Error('Method not implemented.');
-    }
-
-    findByAuthToken(token: string): Promise<User | null> {
-      throw new Error('Method not implemented.');
-    }
-
-    async findByEmailAndPassword(
-      email: string,
-      password: string
-    ): Promise<User | null> {
-      return {
-        id: 1,
-        name: 'valid name',
-        email: 'valid email',
-        avatar: 'valid avatar'
-      };
-    }
-  }
-
-  return new UserApiClientStub();
 };
 
 const makeSut = (): SutTypes => {
@@ -113,7 +79,7 @@ describe('Auth UseCase', () => {
           id: 1,
           name: 'valid name',
           email: 'valid email',
-          avatar: 'valid avatar'
+          avatar: 'valid avatar url'
         }
       });
     });

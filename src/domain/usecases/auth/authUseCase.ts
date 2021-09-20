@@ -7,5 +7,4 @@ export type AuthResult = {
 
 export interface IAuthenticationUseCase {
   signIn(email: string, password: string): Promise<AuthResult>;
-  signOut(): Promise<void>;
 }

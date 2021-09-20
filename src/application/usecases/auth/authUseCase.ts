@@ -1,5 +1,6 @@
 import { IUserApiClient } from '@/application/protocols/user/userApiClient';
 import { IUUIDGenerator } from '@/application/protocols/uuidGenerator';
+import { UnauthorizedError } from '@/domain/errors';
 import {
   AuthResult,
   IAuthenticationUseCase
@@ -23,7 +24,7 @@ export class AuthenticationUseCase implements IAuthenticationUseCase {
     );
 
     if (!user) {
-      throw new Error('Wrong e-mail or password');
+      throw new UnauthorizedError('Wrong e-mail or password');
     }
 
     const token = this.generateDummyToken(user.id);
@@ -33,6 +34,4 @@ export class AuthenticationUseCase implements IAuthenticationUseCase {
       user
     };
   };
-
-  signOut = async (): Promise<void> => {};
 }

@@ -5,12 +5,7 @@ module.exports = {
     node: true,
     jest: true
   },
-  extends: [
-    'plugin:react/recommended',
-    'next/core-web-vitals',
-    'standard',
-    'prettier'
-  ],
+  extends: ['next', 'standard', 'prettier'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
@@ -19,7 +14,7 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module'
   },
-  plugins: ['react', '@typescript-eslint', 'prettier'],
+  plugins: ['@typescript-eslint', 'prettier'],
   globals: {
     JSX: 'readonly'
   },

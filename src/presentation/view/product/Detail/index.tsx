@@ -22,7 +22,7 @@ export type ProductDetailViewProps = {
 export default function ProductDetailView({ product }: ProductDetailViewProps) {
   const [similarProducts, setSimilarProducts] = useState<Product[]>([]);
   const { findSimilar } = useProductUseCase();
-  const { formatCurrent, format } = useDecimalFormatter();
+  const { formatCurrency, format } = useDecimalFormatter();
   const { showAlertDialog } = useAlertContext();
 
   useEffect(() => {
@@ -123,7 +123,7 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
                   variant="h2"
                   sx={{ fontSize: 30, alignSelf: 'flex-end', marginTop: 2 }}
                 >
-                  {formatCurrent(product.price)}
+                  {formatCurrency(product.price)}
                 </Typography>
 
                 <Button

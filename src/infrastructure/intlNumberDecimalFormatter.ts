@@ -2,7 +2,9 @@ import { IDecimalFormatter } from '@/application/protocols/decimalFormatter';
 
 const currencyFormatter = new Intl.NumberFormat('pt-BR', {
   style: 'currency',
-  currency: 'BRL'
+  currency: 'BRL',
+  maximumFractionDigits: 2,
+  minimumFractionDigits: 2
 });
 
 const defaultFormatter = new Intl.NumberFormat('pt-BR', {
@@ -11,7 +13,7 @@ const defaultFormatter = new Intl.NumberFormat('pt-BR', {
 });
 
 export class IntlNumberDecimalFormatter implements IDecimalFormatter {
-  formatCurrent(value: number): string {
+  formatCurrency(value: number): string {
     return currencyFormatter.format(value);
   }
 

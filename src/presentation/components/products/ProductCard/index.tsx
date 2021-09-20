@@ -19,7 +19,7 @@ type Props = {
 };
 
 export function ProductCard({ product }: Props) {
-  const { format, formatCurrent } = useDecimalFormatter();
+  const { format, formatCurrency } = useDecimalFormatter();
 
   return (
     <Link href={`/product/${product.slug}`} passHref>
@@ -37,7 +37,7 @@ export function ProductCard({ product }: Props) {
         </CardContent>
         <CardActions className={styles.cardFooter}>
           <Typography variant="body2" color="text.secondary">
-            Price: {formatCurrent(product.price)}
+            Price: {formatCurrency(product.price)}
           </Typography>
           <Typography
             variant="body2"

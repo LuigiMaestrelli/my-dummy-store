@@ -1,5 +1,5 @@
 import { IUUIDGenerator } from '@/application/protocols/uuidGenerator';
-import { UUIDGenerator } from '@/infrastructure/uuidGenerator';
+import { UUIDGenerator } from '@/infrastructure/adapter/uuidGenerator';
 
 const uuidGenerator = new UUIDGenerator();
 

@@ -1,5 +1,5 @@
 import { IApiClient } from '@/application/protocols/apiClient';
-import { AxiosApiClient } from '@/infrastructure/axiosApiClient';
+import { AxiosApiClient } from '@/infrastructure/adapter/axiosApiClient';
 import { getStateManagement } from '@/main/factories/infrastructure/stateManagement';
 
 const axiosApiClient = new AxiosApiClient();

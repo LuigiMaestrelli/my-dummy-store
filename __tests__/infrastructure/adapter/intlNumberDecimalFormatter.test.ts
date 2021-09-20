@@ -1,4 +1,4 @@
-import { IntlNumberDecimalFormatter } from '@/infrastructure/intlNumberDecimalFormatter';
+import { IntlNumberDecimalFormatter } from '@/infrastructure/adapter/intlNumberDecimalFormatter';
 
 const makeSut = (): IntlNumberDecimalFormatter => {
   return new IntlNumberDecimalFormatter();

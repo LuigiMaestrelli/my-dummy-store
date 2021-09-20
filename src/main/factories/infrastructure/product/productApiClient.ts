@@ -1,5 +1,5 @@
 import { IProductApiClient } from '@/application/protocols/product/productApiClient';
-import { ProductApiClient } from '@/infrastructure/product/productApiClient';
+import { ProductApiClient } from '@/infrastructure/adapter/product/productApiClient';
 import { getApiClient } from '@/main/factories/infrastructure/apiClient';
 
 const apiClient = getApiClient();

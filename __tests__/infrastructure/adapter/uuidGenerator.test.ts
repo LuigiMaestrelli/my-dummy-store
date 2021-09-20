@@ -1,4 +1,4 @@
-import { UUIDGenerator } from '@/infrastructure/uuidGenerator';
+import { UUIDGenerator } from '@/infrastructure/adapter/uuidGenerator';
 
 const makeSut = (): UUIDGenerator => {
   return new UUIDGenerator();

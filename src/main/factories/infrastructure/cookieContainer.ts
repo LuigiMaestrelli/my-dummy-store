@@ -1,5 +1,5 @@
 import { ICookieContainer } from '@/application/protocols/cookieContainer';
-import { NookiesCookieContainer } from '@/infrastructure/nookiesCookieContainer';
+import { NookiesCookieContainer } from '@/infrastructure/adapter/nookiesCookieContainer';
 
 const cookieContainer = new NookiesCookieContainer();
 

@@ -6,8 +6,9 @@ export class ProductUseCase implements IProductUseCase {
   constructor(private readonly productApiClient: IProductApiClient) {}
 
   findSimilar = async (product: Product): Promise<Product[]> => {
-    const products = await this.productApiClient.findSimilar(product);
-
-    return products;
+    return await this.productApiClient.findSimilar(
+      product.id,
+      product.category
+    );
   };
 }

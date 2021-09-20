@@ -63,7 +63,6 @@ export function AuthProvider({ children }: AuthProviderType) {
   }
 
   async function signOut() {
-    await authUseCase.signOut();
     apiClient.updateAuth('');
     stateManagement.removeAuthToken();
     setUser(null);

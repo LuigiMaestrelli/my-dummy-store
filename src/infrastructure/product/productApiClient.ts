@@ -25,11 +25,11 @@ export class ProductApiClient implements IProductApiClient {
     return data[0];
   };
 
-  findSimilar = async (product: Product): Promise<Product[]> => {
+  findSimilar = async (id: number, category: string): Promise<Product[]> => {
     const response = await this.apiClient.get<Product[]>('products', {
       params: {
-        category: product.category,
-        id_ne: product.id,
+        category: category,
+        id_ne: id,
         _limit: 10
       }
     });

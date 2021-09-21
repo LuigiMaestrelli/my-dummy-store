@@ -8,7 +8,7 @@ const stateManagement = getStateManagement();
 const currentToken = stateManagement.getAuthToken();
 
 if (currentToken) {
-  axiosApiClient.updateAuth(currentToken);
+  axiosApiClient.setAuthToken(currentToken);
 }
 
 export function getApiClient(): IApiClient {

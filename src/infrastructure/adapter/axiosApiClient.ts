@@ -5,26 +5,37 @@ import {
 } from '@/application/protocols/apiClient';
 import axios, { AxiosInstance } from 'axios';
 
-const axiosApi: AxiosInstance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API
-});
-
 export class AxiosApiClient implements IApiClient {
-  updateAuth = (token: string) => {
-    if (token) {
-      axiosApi.defaults.headers.Authorization = `Bearer ${token}`;
-    } else {
-      axiosApi.defaults.headers.Authorization = null;
-    }
+  axiosApi: AxiosInstance;
+
+  constructor() {
+    this.axiosApi = axios.create({
+      baseURL: process.env.NEXT_PUBLIC_API
+    });
+  }
+
+  getAxiosInstance = (): AxiosInstance => {
+    return this.axiosApi;
   };
 
-  async get<TResponse>(
+  setAuthToken = (token: string) => {
+    this.axiosApi.defaults.headers.Authorization = `Bearer ${token}`;
+  };
+
+  removeAuthToken = () => {
+    this.axiosApi.defaults.headers.Authorization = null;
+  };
+
+  get = async <TResponse>(
     url: string,
     config?: ApiRequestConfig
-  ): Promise<ApiResponse<TResponse>> {
-    const response = await axiosApi.get<TResponse>(url, config);
+  ): Promise<ApiResponse<TResponse>> => {
+    const response = await this.axiosApi.get<TResponse>(url, config);
 
-    const totalCount = parseInt(response.headers['x-total-count'] || 0);
+    let totalCount = 0;
+    if (response.headers['x-total-count']) {
+      totalCount = parseInt(response.headers['x-total-count']);
+    }
 
     return {
       data: response.data,
@@ -33,13 +44,13 @@ export class AxiosApiClient implements IApiClient {
       headers: response.headers,
       total: totalCount
     };
-  }
+  };
 
-  async delete<TResponse>(
+  delete = async <TResponse>(
     url: string,
     config?: ApiRequestConfig
-  ): Promise<ApiResponse<TResponse>> {
-    const response = await axiosApi.delete<TResponse>(url, config);
+  ): Promise<ApiResponse<TResponse>> => {
+    const response = await this.axiosApi.delete<TResponse>(url, config);
 
     return {
       data: response.data,
@@ -48,30 +59,14 @@ export class AxiosApiClient implements IApiClient {
       headers: response.headers,
       total: 0
     };
-  }
+  };
 
-  async post<TResponse>(
-    url: string,
-    data: any,
-    config?: ApiRequestConfig
-  ): Promise<ApiResponse<TResponse>> {
-    const response = await axiosApi.post<TResponse>(url, data, config);
-
-    return {
-      data: response.data,
-      status: response.status,
-      statusText: response.statusText,
-      headers: response.headers,
-      total: 0
-    };
-  }
-
-  async put<TResponse>(
+  post = async <TResponse>(
     url: string,
     data: any,
     config?: ApiRequestConfig
-  ): Promise<ApiResponse<TResponse>> {
-    const response = await axiosApi.put<TResponse>(url, data, config);
+  ): Promise<ApiResponse<TResponse>> => {
+    const response = await this.axiosApi.post<TResponse>(url, data, config);
 
     return {
       data: response.data,
@@ -80,14 +75,14 @@ export class AxiosApiClient implements IApiClient {
       headers: response.headers,
       total: 0
     };
-  }
+  };
 
-  async patch<TResponse>(
+  put = async <TResponse>(
     url: string,
     data: any,
     config?: ApiRequestConfig
-  ): Promise<ApiResponse<TResponse>> {
-    const response = await axiosApi.patch<TResponse>(url, data, config);
+  ): Promise<ApiResponse<TResponse>> => {
+    const response = await this.axiosApi.put<TResponse>(url, data, config);
 
     return {
       data: response.data,
@@ -96,5 +91,21 @@ export class AxiosApiClient implements IApiClient {
       headers: response.headers,
       total: 0
     };
-  }
+  };
+
+  patch = async <TResponse>(
+    url: string,
+    data: any,
+    config?: ApiRequestConfig
+  ): Promise<ApiResponse<TResponse>> => {
+    const response = await this.axiosApi.patch<TResponse>(url, data, config);
+
+    return {
+      data: response.data,
+      status: response.status,
+      statusText: response.statusText,
+      headers: response.headers,
+      total: 0
+    };
+  };
 }

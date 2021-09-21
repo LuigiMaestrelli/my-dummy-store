@@ -40,7 +40,7 @@ export function AuthProvider({ children }: AuthProviderType) {
     const authToken = stateManagement.getAuthToken();
     if (!authToken) return;
 
-    apiClient.updateAuth(authToken);
+    apiClient.setAuthToken(authToken);
 
     userUseCase
       .findByToken(authToken)
@@ -50,20 +50,20 @@ export function AuthProvider({ children }: AuthProviderType) {
       .catch(() => {
         setUser(null);
         stateManagement.removeAuthToken();
-        apiClient.updateAuth('');
+        apiClient.removeAuthToken();
       });
   }, [userUseCase]);
 
   async function signIn(email: string, password: string) {
     const { token, user } = await authUseCase.signIn(email, password);
 
-    apiClient.updateAuth(token);
+    apiClient.setAuthToken(token);
     stateManagement.setAuthToken(token);
     setUser(user);
   }
 
   async function signOut() {
-    apiClient.updateAuth('');
+    apiClient.removeAuthToken();
     stateManagement.removeAuthToken();
     setUser(null);
 

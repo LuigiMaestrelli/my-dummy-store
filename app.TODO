@@ -3,10 +3,9 @@
 [x] Default page layout
 [x] Authentication
 [x] Search option at app bar
-[] Footer
+[] Better layout
 [x] Product detail
 [] Add product to wish list
-[] Infinite scroll
 [] Internationalization
 [] SWR
 [x] husky
@@ -15,5 +14,4 @@
 [] Cart
 [] Some admin and user area
 [] Tests 
-[] Better layout
-[] Implement clean architecture
+[x] Implement clean architecture

@@ -5,7 +5,8 @@ module.exports = {
     '!**/node_modules/**',
     '!**/.next/**',
     '!**/server/**',
-    '!**/__tests__/**'
+    '!**/__tests__/**',
+    '!**/protocols/**'
   ],
   coverageReporters: ['json', 'text', 'lcov', 'clover'],
   testResultsProcessor: 'jest-sonar-reporter',
@@ -36,6 +37,6 @@ module.exports = {
     '/node_modules/',
     '^.+\\.module\\.(css|sass|scss)$'
   ],
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  setupFilesAfterEnv: ['<rootDir>/__tests__/jest.setup.ts'],
   testMatch: ['**/*.spec.ts', '**/*.spec.tsx', '**/*.test.ts', '**/*.test.tsx']
 };

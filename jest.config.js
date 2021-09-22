@@ -5,8 +5,7 @@ module.exports = {
     '!**/node_modules/**',
     '!**/.next/**',
     '!**/server/**',
-    '!**/__tests__/**',
-    '!**/protocols/**'
+    '!**/__tests__/**'
   ],
   coverageReporters: ['json', 'text', 'lcov', 'clover'],
   testResultsProcessor: 'jest-sonar-reporter',

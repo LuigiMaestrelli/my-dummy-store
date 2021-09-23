@@ -19,7 +19,8 @@ export function AlertDialog({
   onClose,
   title,
   content,
-  okText = 'Ok'
+  okText = 'Ok',
+  ...otherProps
 }: AlertDialogProps) {
   return (
     <Dialog
@@ -28,6 +29,7 @@ export function AlertDialog({
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
       sx={{ zIndex: 9999999 }}
+      {...otherProps}
     >
       <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
       <DialogContent>

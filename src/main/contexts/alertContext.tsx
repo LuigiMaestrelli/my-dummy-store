@@ -16,6 +16,7 @@ type AlertDialogInfoType = {
 };
 
 const AlertContext = createContext({} as AlertContextType);
+export const AlertContextConsumer = AlertContext.Consumer;
 
 export function AlertProvider({ children }: AlertProviderType) {
   const [alertDialogInfo, setAlertDialogInfo] = useState<AlertDialogInfoType>({
@@ -39,6 +40,7 @@ export function AlertProvider({ children }: AlertProviderType) {
   return (
     <AlertContext.Provider value={{ showAlertDialog }}>
       <AlertDialog
+        data-testid="alert-dialog-alert-context"
         open={alertDialogInfo.open}
         title={alertDialogInfo.title}
         content={alertDialogInfo.content}

@@ -1,4 +1,3 @@
-import React from 'react';
 import { render } from '@testing-library/react';
 
 import { Offset } from '@/presentation/components/common/AppBar/components';

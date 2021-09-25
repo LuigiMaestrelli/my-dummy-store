@@ -1,4 +1,10 @@
-import React, { createContext, useState, useEffect, useContext } from 'react';
+import React, {
+  createContext,
+  useState,
+  useEffect,
+  useContext,
+  useCallback
+} from 'react';
 import { useRouter } from 'next/router';
 
 import { User } from '@/domain/models/user';
@@ -15,7 +21,7 @@ type AuthContextType = {
   user: User | null;
   openSignInDialog: () => void;
   signIn: (email: string, password: string) => Promise<void>;
-  signOut: () => Promise<void>;
+  signOut: () => void;
 };
 
 type AuthProviderType = {
@@ -23,6 +29,7 @@ type AuthProviderType = {
 };
 
 const AuthContext = createContext({} as AuthContextType);
+export const AuthContextConsumer = AuthContext.Consumer;
 
 const apiClient = getApiClient();
 const stateManagement = getStateManagement();
@@ -30,6 +37,7 @@ const stateManagement = getStateManagement();
 export function AuthProvider({ children }: AuthProviderType) {
   const [user, setUser] = useState<User | null>(null);
   const [isSignInDialogOpen, setSignInDialogOpen] = useState<boolean>(false);
+
   const authUseCase = useAuthUseCase();
   const userUseCase = useUserUseCase();
   const router = useRouter();
@@ -54,33 +62,39 @@ export function AuthProvider({ children }: AuthProviderType) {
       });
   }, [userUseCase]);
 
-  async function signIn(email: string, password: string) {
-    const { token, user } = await authUseCase.signIn(email, password);
+  const signIn = useCallback(
+    async (email: string, password: string) => {
+      const { token, user } = await authUseCase.signIn(email, password);
 
-    apiClient.setAuthToken(token);
-    stateManagement.setAuthToken(token);
-    setUser(user);
-  }
+      apiClient.setAuthToken(token);
+      stateManagement.setAuthToken(token);
+      setUser(user);
+    },
+    [authUseCase]
+  );
 
-  async function signOut() {
+  const signOut = useCallback(() => {
     apiClient.removeAuthToken();
     stateManagement.removeAuthToken();
     setUser(null);
 
     router.push('/');
-  }
+  }, [router]);
 
-  function openSignInDialog() {
+  const openSignInDialog = useCallback(() => {
     setSignInDialogOpen(true);
-  }
+  }, []);
 
-  function handleCloseLoginDialog() {
+  const handleCloseLoginDialog = useCallback(() => {
     setSignInDialogOpen(false);
-  }
+  }, []);
 
-  async function handleSignInDialog(email: string, password: string) {
-    await signIn(email, password);
-  }
+  const handleSignInDialog = useCallback(
+    async (email: string, password: string) => {
+      await signIn(email, password);
+    },
+    [signIn]
+  );
 
   return (
     <AuthContext.Provider

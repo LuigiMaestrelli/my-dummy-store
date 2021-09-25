@@ -1,4 +1,3 @@
-import React from 'react';
 import mockRouter from 'next-router-mock';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { hexToRgb } from '@test/utils/color';

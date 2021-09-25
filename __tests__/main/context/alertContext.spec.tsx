@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
 
@@ -43,9 +42,7 @@ describe('AlertContext', () => {
             return (
               <div
                 data-testid="div-test-id"
-                onClick={() => {
-                  showAlertDialog('Title', 'Message');
-                }}
+                onClick={() => showAlertDialog('Title', 'Message')}
               >
                 <span>Some text here</span>
               </div>
@@ -73,9 +70,7 @@ describe('AlertContext', () => {
             return (
               <div
                 data-testid="div-test-id"
-                onClick={() => {
-                  showAlertDialog('Title', 'Message');
-                }}
+                onClick={() => showAlertDialog('Title', 'Message')}
               >
                 <span>Some text here</span>
               </div>

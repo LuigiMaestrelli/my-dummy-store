@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useCallback } from 'react';
 import { AlertDialog } from '@/presentation/components/common/Dialog';
 
 type AlertContextType = {
@@ -25,17 +25,17 @@ export function AlertProvider({ children }: AlertProviderType) {
     content: ''
   });
 
-  function handleAlertDialogClose() {
-    setAlertDialogInfo({ open: false, title: '', content: '' });
-  }
+  const handleAlertDialogClose = useCallback(() => {
+    setAlertDialogInfo({ ...alertDialogInfo, open: false });
+  }, [alertDialogInfo]);
 
-  function showAlertDialog(title: string, content: string) {
+  const showAlertDialog = useCallback((title: string, content: string) => {
     setAlertDialogInfo({
       open: true,
       title,
       content
     });
-  }
+  }, []);
 
   return (
     <AlertContext.Provider value={{ showAlertDialog }}>

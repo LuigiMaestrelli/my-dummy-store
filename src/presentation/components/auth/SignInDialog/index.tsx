@@ -49,6 +49,7 @@ export function SignInDialog({ open, onClose, onSignIn }: SignInDialogProps) {
         formik.resetForm();
         onClose();
       } catch (ex: any) {
+        console.log(ex);
         showAlertDialog('Ops', ex.message);
       } finally {
         setLoading(false);
@@ -63,6 +64,7 @@ export function SignInDialog({ open, onClose, onSignIn }: SignInDialogProps) {
 
   return (
     <Dialog
+      data-testid="sign-in-dialog"
       open={open}
       onClose={handleClose}
       aria-labelledby="alert-dialog-title"
@@ -79,6 +81,9 @@ export function SignInDialog({ open, onClose, onSignIn }: SignInDialogProps) {
             type="email"
             variant="standard"
             margin="dense"
+            inputProps={{
+              'data-testid': 'sign-in-dialog-email'
+            }}
             onChange={formik.handleChange}
             value={formik.values.email}
             error={formik.touched.email && !!formik.errors.email}
@@ -95,6 +100,9 @@ export function SignInDialog({ open, onClose, onSignIn }: SignInDialogProps) {
             type="password"
             margin="dense"
             variant="standard"
+            inputProps={{
+              'data-testid': 'sign-in-dialog-password'
+            }}
             onChange={formik.handleChange}
             value={formik.values.password}
             error={formik.touched.password && !!formik.errors.password}
@@ -106,7 +114,11 @@ export function SignInDialog({ open, onClose, onSignIn }: SignInDialogProps) {
           />
         </DialogContent>
         <DialogActions>
-          <Button type="submit" autoFocus>
+          <Button
+            type="submit"
+            autoFocus
+            data-testid="sign-in-dialog-sign-in-button"
+          >
             {isLoading && (
               <CircularProgress size={20} sx={{ marginRight: 1 }} />
             )}

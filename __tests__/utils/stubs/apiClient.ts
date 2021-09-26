@@ -88,6 +88,6 @@ class ApiClientStub implements IApiClient {
   removeAuthToken(): void {}
 }
 
-export const makeApiClientSub = (): IApiClient => {
+export const makeApiClientStub = (): IApiClient => {
   return new ApiClientStub();
 };

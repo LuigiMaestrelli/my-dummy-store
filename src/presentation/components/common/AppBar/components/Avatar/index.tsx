@@ -25,9 +25,9 @@ export function Avatar() {
     setAnchorEl(null);
   };
 
-  const handleProfile = () => {
+  const handleProfile = async () => {
     handleClose();
-    router.push('/user');
+    await router.push('/user');
   };
 
   const handleSignOut = async () => {

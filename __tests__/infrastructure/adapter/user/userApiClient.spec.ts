@@ -1,6 +1,6 @@
 import { IApiClient } from '@/application/protocols/apiClient';
 import { UserApiClient } from '@/infrastructure/adapter/user/userApiClient';
-import { makeApiClientSub } from '@test/utils/stubs/apiClient';
+import { makeApiClientStub } from '@test/utils/stubs/apiClient';
 
 type SutTypes = {
   sut: UserApiClient;
@@ -8,7 +8,7 @@ type SutTypes = {
 };
 
 const makeSut = (): SutTypes => {
-  const apiClientSub = makeApiClientSub();
+  const apiClientSub = makeApiClientStub();
   const sut = new UserApiClient(apiClientSub);
 
   return { sut, apiClientSub };

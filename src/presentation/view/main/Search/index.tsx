@@ -27,11 +27,11 @@ export default function SearchView({
 }: SearchViewProps) {
   const router = useRouter();
 
-  const handlePageChange = (
+  const handlePageChange = async (
     event: React.ChangeEvent<unknown>,
     page: number
   ) => {
-    router.push(`/search/${search}?page=${page}`);
+    await router.push(`/search/${search}?page=${page}`);
   };
 
   return (

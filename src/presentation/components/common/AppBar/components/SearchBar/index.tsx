@@ -60,10 +60,12 @@ export function SearchBar() {
     setSearchText(event.target.value);
   };
 
-  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyPress = async (
+    event: React.KeyboardEvent<HTMLInputElement>
+  ) => {
     if (event.key === 'Enter' && searchText) {
-      router.push(`/search/${encodeURI(searchText)}`);
       event.preventDefault();
+      await router.push(`/search/${encodeURI(searchText)}`);
     }
   };
 

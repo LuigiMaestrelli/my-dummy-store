@@ -37,5 +37,6 @@ module.exports = {
     '^.+\\.module\\.(css|sass|scss)$'
   ],
   setupFilesAfterEnv: ['<rootDir>/__tests__/jest.setup.ts'],
-  testMatch: ['**/*.spec.ts', '**/*.spec.tsx', '**/*.test.ts', '**/*.test.tsx']
+  testMatch: ['**/*.spec.ts', '**/*.spec.tsx', '**/*.test.ts', '**/*.test.tsx'],
+  testTimeout: 10000
 };

@@ -1,7 +1,7 @@
 import { IUserApiClient } from '@/application/protocols/user/userApiClient';
 import { UserUseCase } from '@/application/usecases/user/userUseCase';
 
-import { makeUserApiClient } from '@test/utils/stubs/userApiClient';
+import { makeUserApiClient } from '@test/utils/stubs/infrastructure/userApiClient';
 
 type SutTypes = {
   sut: UserUseCase;

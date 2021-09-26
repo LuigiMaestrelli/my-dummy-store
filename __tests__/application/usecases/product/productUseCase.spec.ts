@@ -1,7 +1,7 @@
 import { IProductApiClient } from '@/application/protocols/product/productApiClient';
 import { ProductUseCase } from '@/application/usecases/product/productUseCase';
 
-import { makeProductApiClient } from '@test/utils/stubs/productApiClient';
+import { makeProductApiClient } from '@test/utils/stubs/infrastructure/productApiClient';
 
 type SutTypes = {
   sut: ProductUseCase;

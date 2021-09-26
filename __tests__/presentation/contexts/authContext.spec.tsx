@@ -17,10 +17,10 @@ import {
 } from '@/presentation/contexts/authContext';
 
 import { sleep } from '@test/utils/timers';
-import { makeAuthUseCaseStub } from '@test/utils/stubs/authUseCase';
-import { makeUserUseCaseStub } from '@test/utils/stubs/userUseCase';
-import { makeApiClientStub } from '@test/utils/stubs/apiClient';
-import { makeStateManagementStub } from '@test/utils/stubs/stateManagement';
+import { makeAuthUseCaseStub } from '@test/utils/stubs//usecases/authUseCase';
+import { makeUserUseCaseStub } from '@test/utils/stubs/usecases/userUseCase';
+import { makeApiClientStub } from '@test/utils/stubs/infrastructure/apiClient';
+import { makeStateManagementStub } from '@test/utils/stubs/infrastructure/stateManagement';
 import { User } from '@/domain/models/user';
 
 describe('AuthContextProvider', () => {

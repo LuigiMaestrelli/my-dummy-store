@@ -1,5 +1,5 @@
 import { getApiClient, init } from '@/main/factories/infrastructure/apiClient';
-import { makeStateManagementStub } from '@test/utils/stubs/stateManagement';
+import { makeStateManagementStub } from '@test/utils/stubs/infrastructure/stateManagement';
 
 describe('ApiClient Factory', () => {
   beforeEach(() => {

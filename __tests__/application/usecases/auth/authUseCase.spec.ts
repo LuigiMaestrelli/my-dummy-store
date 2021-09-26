@@ -3,8 +3,8 @@ import { IUUIDGenerator } from '@/application/protocols/uuidGenerator';
 import { AuthenticationUseCase } from '@/application/usecases/auth/authUseCase';
 import { UnauthorizedError } from '@/domain/errors';
 
-import { makeUserApiClient } from '@test/utils/stubs/userApiClient';
-import { makeUUIDGenerator } from '@test/utils/stubs/uuidGenerator';
+import { makeUserApiClient } from '@test/utils/stubs/infrastructure/userApiClient';
+import { makeUUIDGenerator } from '@test/utils/stubs/infrastructure/uuidGenerator';
 
 type SutTypes = {
   sut: AuthenticationUseCase;

@@ -1,6 +1,6 @@
 import { ICookieContainer } from '@/application/protocols/cookieContainer';
 import { StateManagement } from '@/infrastructure/stateManagement';
-import { makeCookieContainer } from '@test/utils/stubs/cookieContainer';
+import { makeCookieContainer } from '@test/utils/stubs/infrastructure/cookieContainer';
 
 type SutTypes = {
   sut: StateManagement;

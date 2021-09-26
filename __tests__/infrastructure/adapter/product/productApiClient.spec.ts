@@ -1,6 +1,6 @@
 import { IApiClient } from '@/application/protocols/apiClient';
 import { ProductApiClient } from '@/infrastructure/adapter/product/productApiClient';
-import { makeApiClientStub } from '@test/utils/stubs/apiClient';
+import { makeApiClientStub } from '@test/utils/stubs/infrastructure/apiClient';
 
 type SutTypes = {
   sut: ProductApiClient;

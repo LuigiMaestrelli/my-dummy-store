@@ -31,9 +31,14 @@ export function AlertDialog({
       sx={{ zIndex: 9999999 }}
       {...otherProps}
     >
-      <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
+      <DialogTitle id="alert-dialog-title" data-testid="alert-dialog-title">
+        {title}
+      </DialogTitle>
       <DialogContent>
-        <DialogContentText id="alert-dialog-description">
+        <DialogContentText
+          id="alert-dialog-description"
+          data-testid="alert-dialog-description"
+        >
           {content}
         </DialogContentText>
       </DialogContent>

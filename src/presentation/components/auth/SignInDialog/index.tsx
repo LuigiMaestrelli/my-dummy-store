@@ -10,6 +10,7 @@ import TextField from '@mui/material/TextField';
 import CircularProgress from '@mui/material/CircularProgress';
 
 import { useAlertContext } from '@/main/contexts/alertContext';
+import { FormHelperTextDataProps } from '@/presentation/protocols/formHelperTextProps';
 
 type SignInDialogProps = {
   open: boolean;
@@ -23,11 +24,8 @@ type LoginFormDto = {
 };
 
 const SignInSchema = Yup.object().shape({
-  password: Yup.string()
-    .min(5, 'Too Short!')
-    .max(50, 'Too Long!')
-    .required('Required'),
-  email: Yup.string().email('Invalid email').required('Required')
+  password: Yup.string().required('Required'),
+  email: Yup.string().email('Invalid e-mail').required('Required')
 });
 
 export function SignInDialog({ open, onClose, onSignIn }: SignInDialogProps) {
@@ -49,9 +47,9 @@ export function SignInDialog({ open, onClose, onSignIn }: SignInDialogProps) {
         formik.resetForm();
         onClose();
       } catch (ex: any) {
-        console.log(ex);
         showAlertDialog('Ops', ex.message);
       } finally {
+        formik.setSubmitting(false);
         setLoading(false);
       }
     }
@@ -84,6 +82,11 @@ export function SignInDialog({ open, onClose, onSignIn }: SignInDialogProps) {
             inputProps={{
               'data-testid': 'sign-in-dialog-email'
             }}
+            FormHelperTextProps={
+              {
+                'data-testid': 'sign-in-dialog-email-helper'
+              } as FormHelperTextDataProps
+            }
             onChange={formik.handleChange}
             value={formik.values.email}
             error={formik.touched.email && !!formik.errors.email}
@@ -103,6 +106,11 @@ export function SignInDialog({ open, onClose, onSignIn }: SignInDialogProps) {
             inputProps={{
               'data-testid': 'sign-in-dialog-password'
             }}
+            FormHelperTextProps={
+              {
+                'data-testid': 'sign-in-dialog-password-helper'
+              } as FormHelperTextDataProps
+            }
             onChange={formik.handleChange}
             value={formik.values.password}
             error={formik.touched.password && !!formik.errors.password}
@@ -120,11 +128,20 @@ export function SignInDialog({ open, onClose, onSignIn }: SignInDialogProps) {
             data-testid="sign-in-dialog-sign-in-button"
           >
             {isLoading && (
-              <CircularProgress size={20} sx={{ marginRight: 1 }} />
+              <CircularProgress
+                data-testid="sign-in-dialog-loading"
+                size={20}
+                sx={{ marginRight: 1 }}
+              />
             )}
             Sign-in
           </Button>
-          <Button onClick={handleClose}>Cancel</Button>
+          <Button
+            data-testid="sign-in-dialog-cancel-button"
+            onClick={handleClose}
+          >
+            Cancel
+          </Button>
         </DialogActions>
       </form>
     </Dialog>

@@ -8,6 +8,7 @@ export function Footer() {
   return (
     <Box
       component="footer"
+      data-testid="footer"
       sx={{
         backgroundColor: theme.palette.primary.main,
         padding: 1

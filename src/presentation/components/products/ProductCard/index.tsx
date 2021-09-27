@@ -23,12 +23,13 @@ export function ProductCard({ product }: Props) {
 
   return (
     <Link href={`/product/${product.slug}`} passHref>
-      <Card className={styles.card}>
+      <Card className={styles.card} data-testid="product-card">
         <CardMedia
           component="img"
           height="200"
           image={`${product.image}?w=200`}
           alt={product.title}
+          data-testid="product-image"
         />
         <CardContent className={styles.cardContent}>
           <Typography gutterBottom variant="h5" className={styles.productTitle}>
@@ -36,13 +37,18 @@ export function ProductCard({ product }: Props) {
           </Typography>
         </CardContent>
         <CardActions className={styles.cardFooter}>
-          <Typography variant="body2" color="text.secondary">
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            data-testid="product-price"
+          >
             Price: {formatCurrency(product.price)}
           </Typography>
           <Typography
             variant="body2"
             color="text.secondary"
             className={styles.productRatings}
+            data-testid="product-ratings"
           >
             Ratings: {format(product.rating.rate)}
             <AccessAlarmIcon color="action" fontSize="small" />

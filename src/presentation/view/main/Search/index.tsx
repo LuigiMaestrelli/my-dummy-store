@@ -39,7 +39,14 @@ export default function SearchView({
       {products.length ? (
         <Grid container spacing={1}>
           {products.map(product => (
-            <Grid item key={product.id} xs={12} sm={6} md={3}>
+            <Grid
+              item
+              key={product.id}
+              xs={12}
+              sm={6}
+              md={3}
+              data-testid="product-grid-item"
+            >
               <ProductCard product={product} />
             </Grid>
           ))}
@@ -49,7 +56,7 @@ export default function SearchView({
           <Card sx={{ padding: 1, display: 'flex', flexDirection: 'row' }}>
             <Image
               src="/no_product_found.svg"
-              alt="product found image"
+              alt="no product found image"
               width={200}
               height={200}
             />
@@ -79,6 +86,7 @@ export default function SearchView({
           count={totalPages}
           page={page}
           onChange={handlePageChange}
+          data-testid="search-pagination"
         />
       </Box>
     </Container>

@@ -14,6 +14,7 @@ import { Image } from '@/presentation/components/common/Image';
 
 import { useAlertContext } from '@/main/contexts/alertContext';
 import { useAuthContext } from '@/main/contexts/authContext';
+import { FormHelperTextDataProps } from '@/presentation/protocols/formHelperTextProps';
 
 export type SignInViewProps = {
   redirectUrl?: string;
@@ -26,7 +27,7 @@ type LoginFormDto = {
 
 const SignInSchema = Yup.object().shape({
   password: Yup.string().required('Required'),
-  email: Yup.string().email('Invalid email').required('Required')
+  email: Yup.string().email('Invalid e-mail').required('Required')
 });
 
 export default function SignInView({ redirectUrl }: SignInViewProps) {
@@ -48,10 +49,9 @@ export default function SignInView({ redirectUrl }: SignInViewProps) {
       try {
         await signIn(values.email, values.password);
 
-        router.replace(redirectUrl ?? '/');
+        await router.replace(redirectUrl ?? '/');
       } catch (ex: any) {
         showAlertDialog('Ops', ex.message);
-      } finally {
         setLoading(false);
       }
     }
@@ -86,6 +86,14 @@ export default function SignInView({ redirectUrl }: SignInViewProps) {
             type="email"
             variant="standard"
             margin="dense"
+            inputProps={{
+              'data-testid': 'sign-in-email'
+            }}
+            FormHelperTextProps={
+              {
+                'data-testid': 'sign-in-email-helper'
+              } as FormHelperTextDataProps
+            }
             onChange={formik.handleChange}
             value={formik.values.email}
             error={formik.touched.email && !!formik.errors.email}
@@ -102,6 +110,14 @@ export default function SignInView({ redirectUrl }: SignInViewProps) {
             type="password"
             margin="dense"
             variant="standard"
+            inputProps={{
+              'data-testid': 'sign-in-password'
+            }}
+            FormHelperTextProps={
+              {
+                'data-testid': 'sign-in-password-helper'
+              } as FormHelperTextDataProps
+            }
             onChange={formik.handleChange}
             value={formik.values.password}
             error={formik.touched.password && !!formik.errors.password}
@@ -119,9 +135,17 @@ export default function SignInView({ redirectUrl }: SignInViewProps) {
               marginTop: 1
             }}
           >
-            <Button type="submit" variant="contained">
+            <Button
+              type="submit"
+              variant="contained"
+              data-testid="sign-in-button"
+            >
               {isLoading && (
-                <CircularProgress size={20} sx={{ marginRight: 1 }} />
+                <CircularProgress
+                  size={20}
+                  sx={{ marginRight: 1 }}
+                  data-testid="sign-in-loading"
+                />
               )}
               Sign-in
             </Button>

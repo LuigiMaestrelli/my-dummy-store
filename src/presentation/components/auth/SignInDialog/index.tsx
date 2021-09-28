@@ -31,6 +31,7 @@ const SignInSchema = Yup.object().shape({
 export function SignInDialog({ open, onClose, onSignIn }: SignInDialogProps) {
   const [isLoading, setLoading] = useState<boolean>(false);
   const { showAlertDialog } = useAlertContext();
+
   const formik = useFormik<LoginFormDto>({
     initialValues: {
       password: '',

@@ -3,9 +3,19 @@ import userEvent from '@testing-library/user-event';
 
 import { SignInDialog } from '@/presentation/components/auth/SignInDialog';
 import { sleep } from '@test/utils/timers';
-import { AlertProvider } from '@/main/contexts/alertContext';
+
+const mockShowAlertDialog = jest.fn();
+jest.mock('@/main/contexts/alertContext', () => ({
+  useAlertContext: jest.fn(() => ({
+    showAlertDialog: mockShowAlertDialog
+  }))
+}));
 
 describe('SignInDialog', () => {
+  beforeEach(() => {
+    mockShowAlertDialog.mockReset();
+  });
+
   describe('general', () => {
     it('should render the dialog', () => {
       render(
@@ -268,13 +278,11 @@ describe('SignInDialog', () => {
       });
 
       render(
-        <AlertProvider>
-          <SignInDialog
-            open={true}
-            onClose={jest.fn()}
-            onSignIn={onSignInSpy as any}
-          />
-        </AlertProvider>
+        <SignInDialog
+          open={true}
+          onClose={jest.fn()}
+          onSignIn={onSignInSpy as any}
+        />
       );
 
       const emailField = screen.getByTestId('sign-in-dialog-email');
@@ -290,14 +298,7 @@ describe('SignInDialog', () => {
         fireEvent.click(signInBtn);
       });
 
-      const dialogTitle = screen.getByTestId('alert-dialog-title');
-      const dialogMessage = screen.getByTestId('alert-dialog-description');
-
-      expect(dialogTitle).toBeVisible();
-      expect(dialogMessage).toBeVisible();
-
-      expect(dialogTitle.textContent).toBe('Ops');
-      expect(dialogMessage.textContent).toBe('test throw');
+      expect(mockShowAlertDialog).toHaveBeenCalledWith('Ops', 'test throw');
     });
 
     it('should show loading while processing', async () => {
@@ -324,9 +325,8 @@ describe('SignInDialog', () => {
         fireEvent.click(signInBtn);
       });
 
-      const LoadingProcess = screen.getByTestId('sign-in-dialog-loading');
-
-      expect(LoadingProcess).toBeVisible();
+      const loadingProcess = screen.getByTestId('sign-in-dialog-loading');
+      expect(loadingProcess).toBeVisible();
     });
   });
 });

@@ -29,7 +29,7 @@ describe('SignInView', () => {
   });
 
   describe('general', () => {
-    it('should render component', () => {
+    it('should render the component', () => {
       const result = render(<SignInView />);
       expect(result.baseElement).toBeVisible();
     });

@@ -25,12 +25,14 @@ export function SimilarProductCard({ product }: SimilarProductCardType) {
           minWidth: 100,
           cursor: 'pointer'
         }}
+        data-testid="similar-product"
       >
         <Image
           src={`${product.image}?w=100`}
           alt={product.title}
           width={100}
           height={100}
+          data-testid="similar-product-image"
         />
         <Typography
           variant="body2"

@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import HomeView from '@/presentation/view/main/Home';
 
 describe('HomeView', () => {
-  it('should render component', () => {
+  it('should render the component', () => {
     const result = render(<HomeView products={[]} />);
     expect(result.baseElement).toBeVisible();
   });

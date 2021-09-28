@@ -26,10 +26,6 @@ export default function ProductDetailView({ product }: ProductDetailViewProps) {
   const { showAlertDialog } = useAlertContext();
 
   useEffect(() => {
-    if (!product) {
-      return;
-    }
-
     findSimilar(product).then(products => setSimilarProducts(products));
   }, [product, findSimilar]);
 

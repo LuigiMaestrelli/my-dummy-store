@@ -42,6 +42,7 @@ export function ProductImageView({
               className={styles.imagePreview}
               onMouseEnter={() => handleSelectImage(image)}
               onClick={() => handleSelectImage(image)}
+              data-testid="product-other-image"
             />
           </ImageListItem>
         ))}
@@ -52,6 +53,7 @@ export function ProductImageView({
           alt={productTitle}
           width={400}
           height={400}
+          data-testid="product-primary-image"
         />
       </div>
     </div>

@@ -48,4 +48,27 @@ describe('AppBar - SearchBar Component', () => {
     const encodedText = encodeURI(searchText);
     expect(mockRouter.asPath).toBe(`/search/${encodedText}`);
   });
+
+  it('should not redirect to search with no enter is pressed', async () => {
+    render(<SearchBar />);
+
+    const searchText = 'ção test !@() test';
+    const input = screen.getByTestId('search-bar-input');
+    await act(async () => {
+      await userEvent.type(input, searchText, { delay: 100 });
+    });
+
+    expect(mockRouter.asPath).toBe('/');
+  });
+
+  it('should not redirect to search on enter with empty text', async () => {
+    render(<SearchBar />);
+
+    const input = screen.getByTestId('search-bar-input');
+    await act(async () => {
+      await userEvent.type(input, '{enter}', { delay: 100 });
+    });
+
+    expect(mockRouter.asPath).toBe('/');
+  });
 });
